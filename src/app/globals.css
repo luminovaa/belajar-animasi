@@ -10,7 +10,7 @@
   }
 
   100% {
-    transform: translateY(100vh) rotate(720deg);
+    transform: translateY(var(--fall-distance, 100vh)) rotate(720deg);
     opacity: 0;
   }
 }

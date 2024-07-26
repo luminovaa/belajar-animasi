@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import useSakuraPetals from '@/hooks/useSakuraPetals';
 import SakuraPetal from './petal';
 
@@ -19,20 +19,20 @@ export default function Sakura() {
   }, [addPetal]);
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      {petals.map((petal) => (
-        <SakuraPetal
-          key={petal.id}
-          style={{
-            left: `${petal.x}px`,
-            top: `${petal.y}px`,
-            transform: `rotate(${petal.rotation}deg) scale(${petal.scale})`,
-          }}
-        />
-      ))}
-      <h1 className="text-3xl font-bold text-center pt-10">
-        Click anywhere to create falling sakura petals!
-      </h1>
+    <div className="absolute inset-0 overflow-hidden">
+      <div className="relative w-full h-full">
+        {petals.map((petal) => (
+          <SakuraPetal
+            key={petal.id}
+            style={{
+              left: `${petal.x}px`,
+              top: `${petal.y}px`,
+              transform: `rotate(${petal.rotation}deg) scale(${petal.scale})`,
+            }}
+            fallDistance={petal.fallDistance}
+          />
+        ))}
+      </div>
     </div>
   );
 }

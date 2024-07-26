@@ -1,4 +1,5 @@
 import React from 'react';
+import Sakura from './sakura';
 const VideoBackground = () => {
   return (
     <div className="relative w-full h-screen overflow-hidden">
@@ -6,6 +7,7 @@ const VideoBackground = () => {
         <source src='/wallpaper.mp4' type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+      <Sakura />
     </div>
   );
 };

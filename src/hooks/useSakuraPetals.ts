@@ -1,5 +1,4 @@
-// hooks/useSakuraPetals.ts
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 interface Petal {
   id: number;
@@ -7,10 +6,19 @@ interface Petal {
   y: number;
   rotation: number;
   scale: number;
+  fallDistance: number;
 }
 
 const useSakuraPetals = () => {
   const [petals, setPetals] = useState<Petal[]>([]);
+  const [windowHeight, setWindowHeight] = useState(0);
+
+  useEffect(() => {
+    setWindowHeight(window.innerHeight);
+    const handleResize = () => setWindowHeight(window.innerHeight);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const addPetal = useCallback((x: number, y: number) => {
     const newPetal: Petal = {
@@ -19,14 +27,14 @@ const useSakuraPetals = () => {
       y,
       rotation: Math.random() * 360,
       scale: 0.5 + Math.random() * 0.5,
+      fallDistance: Math.min(windowHeight - y, windowHeight * 1) 
     };
     setPetals((prevPetals) => [...prevPetals, newPetal]);
 
-    // Remove the petal after 3 seconds
     setTimeout(() => {
       setPetals((prevPetals) => prevPetals.filter(petal => petal.id !== newPetal.id));
     }, 3000);
-  }, []);
+  }, [windowHeight]);
 
   return { petals, addPetal };
 };

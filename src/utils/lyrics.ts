@@ -1,13 +1,13 @@
-const romaji = [
+const romaji: string[] = [
   "Ameagari no niji mo",
   "Rin to saita hana mo",
   "Irozuki afuredasu",
   "Akaneiro no sora aogu kimi ni",
-  "Ano hi koi ni ochita",
+  "Ano hi koi ni ochita",
 
-  "Shunkan no doramachikku",
+  "Shunkan no doramachikku",
   "Firumu no naka no hitokoma mo",
-  "Kienai yo kokoro ni kizamu kara",
+  "Kienai yo kokoro ni kizamu kara",
 
   "Kimi da yo kimi nanda yo",
   "Oshiete kureta",
@@ -59,7 +59,7 @@ const romaji = [
   "Kitto futari wo ugokasu hikari ni naru kara",
 ];
 
-const indonesia = [
+const indonesia: string[] = [
   "Pelangi setelah hujan",
   "Bunga yang mekar dengan anggun",
   "Warna-warna yang bermekaran",
@@ -120,7 +120,7 @@ const indonesia = [
   "Pasti akan menjadi cahaya yang menggerakkan kita berdua",
 ];
 
-const inggris = [
+const inggris: string[] = [
   "The rainbow after the rain",
   "The flower that bloomed gracefully",
   "The colors overflowing",
@@ -181,7 +181,7 @@ const inggris = [
   "Will surely become the light that moves us both",
 ];
 
-const kanji = [
+const kanji: string[] = [
   "雨上がりの虹も",
   "凛と咲いた花も",
   "色づきあふれ出す",
@@ -242,5 +242,66 @@ const kanji = [
   "きっと二人を動かす光になるから",
 ];
 
+const jawa: string[] = [
+  "Pelangi sakwise udan",
+  "Kembang sing mekrok kanthi gagah",
+  "Werna-werna sing kebak",
+  "Ing langit abang senja sing kowe pandang",
+  "Dina iku aku tresna marang kowe",
 
-export {inggris, romaji, indonesia, kanji}
+  "Momen dramatis sekedhik iku",
+  "Saben adegan ing film",
+  "Ora bakal ilang, tetulis ing ati",
+
+  "Kowe, kowe kuwi",
+  "Sing mulang aku",
+  "Yen peteng bisa sumunar",
+  "Bakal dadi langit lintang",
+  "Susah bakal dadi eseman",
+  "Aja disimpen maneh",
+  "Saben lintang sing sumunar",
+  "Bakal madhangi kowe",
+
+  "Sambut esuk tanpa turu",
+  "Nusuk kanthi tajem",
+  "Sirah lara sing digawa tekanan rendah",
+  "Bakal dilalekake yen ketemu kowe",
+
+  "Kasepen iku romantis",
+  "Kaya gula sing lebur ing teh ireng",
+  "Swara kowe mili ing kabeh awak",
+
+  "Kowe, kowe kuwi",
+  "Sing maringi aku eseman",
+  "Yen eluh bisa sumunar",
+  "Bakal dadi lintang jatuh",
+  "Tangan sing lara iku",
+  "Aja dibuwang maneh",
+  "Ing langit sing kebak pangarep-arep",
+  "Sesuk bakal teka",
+
+  "Cahya sing nuntun iku kowe",
+  "Nyebabke aku melu mlayu",
+  "Tanpa sadar kita wiwit nyabrang",
+  "Deloken, yen saiki sumunar ing kene",
+  "Kowe, kowe kuwi",
+  "Sing mulang aku",
+  "Peteng bakal rampung",
+
+  "Kowe, kowe kuwi",
+  "Sing mulang aku",
+  "Yen peteng bisa sumunar",
+  "Bakal dadi langit lintang",
+  "Susah bakal dadi eseman",
+  "Aja disimpen maneh",
+  "Saben lintang sing sumunar",
+  "Bakal madhangi kowe",
+
+  "Apa jawaban tansah kebeneran? Kebutuhan?",
+  "Jalan sing kapan wae kowe pilih bakal dadi takdir",
+  "Pangarep-arep lan kuatir sing kowe gegem erat",
+  "Bakal dadi cahya sing nggerakke kita loro",
+];
+
+
+export {inggris, romaji, indonesia, kanji, jawa}
