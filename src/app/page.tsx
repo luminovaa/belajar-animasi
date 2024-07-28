@@ -19,7 +19,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const loadAssets = async () => {
-      const totalAssets = 4;
+      const totalAssets = 6;
       let loadedAssets = 0;
 
       const updateProgress = () => {
@@ -34,7 +34,10 @@ const Home: React.FC = () => {
 
       await loadAsset("Navbar", 1250);
       updateProgress();
-
+      await loadAsset("Navbar", 1250);
+      updateProgress();
+      await loadAsset("Navbar", 1250);
+      updateProgress();
       await loadAsset("Footer", 1000);
       updateProgress();
     };

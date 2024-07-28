@@ -16,7 +16,6 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
         onChange={(e) => setLanguage(e.target.value as LanguageOption)}
         className="bg-transparent text-white p-2 rounded"
       >
-        <option value="off">Off</option>
         <option value="inggris">English</option>
         <option value="romaji">Romaji</option>
         <option value="indonesia">Indonesia</option>

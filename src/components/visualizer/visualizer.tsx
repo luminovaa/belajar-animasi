@@ -4,6 +4,7 @@ import LyricDisplay from '@/components/lyrics/lyricsdisplay';
 import { LanguageOption } from '@/components/lyrics/type';
 import { lyricsData } from '@/utils/lyrics';
 import Navbar from "@/components/navbar";
+import CustomAudioPlayer from './customaudio';
 
 interface AnalyzerData {
   analyzer: AnalyserNode;
@@ -68,14 +69,14 @@ const Visualizer: React.FC = () => {
     <div className="relative w-full h-screen flex flex-col items-center justify-start overflow-hidden">
       <Navbar language={language} setLanguage={setLanguage} />
       {analyzerData && isPlaying && <WaveForm analyzerData={analyzerData} />}
-      <div className="mt-4 z-10">
+      <div className="mt-4 z-10 w-full max-w-3xl">
         <audio 
           ref={audioRef}
           src="/Hikarunara.mp3" 
-          controls
           loop
-          className="max-w-full"
+          controls={false}
         />
+        <CustomAudioPlayer audioRef={audioRef} />
       </div>
       <LyricDisplay audioRef={audioRef} language={language} lyricsData={lyricsData} />
     </div>
