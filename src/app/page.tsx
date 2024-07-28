@@ -32,10 +32,10 @@ const Home: React.FC = () => {
       await loadAsset("Visualizer", 1500);
       updateProgress();
 
-      await loadAsset("Navbar", 1000);
+      await loadAsset("Navbar", 1250);
       updateProgress();
 
-      await loadAsset("Footer", 500);
+      await loadAsset("Footer", 1000);
       updateProgress();
     };
 
@@ -49,7 +49,6 @@ const Home: React.FC = () => {
   return (
     <main className="relative h-screen">
       <header className="absolute w-full z-50">
-        <Navbar />
         <Visualizer />
       </header>
       <Footer />

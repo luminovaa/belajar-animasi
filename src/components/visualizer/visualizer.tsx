@@ -1,14 +1,20 @@
-'use client'
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import WaveForm from "./waveFrom";
+import LyricDisplay from '@/components/lyrics/lyricsdisplay';
+import { LanguageOption } from '@/components/lyrics/type';
+import { lyricsData } from '@/utils/lyrics';
+import Navbar from "@/components/navbar";
 
-export default function Visualizer() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [analyzerData, setAnalyzerData] = useState<{
-    analyzer: AnalyserNode;
-    bufferLength: number;
-    dataArray: Uint8Array;
-  } | null>(null);
+interface AnalyzerData {
+  analyzer: AnalyserNode;
+  bufferLength: number;
+  dataArray: Uint8Array;
+}
+
+const Visualizer: React.FC = () => {
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [analyzerData, setAnalyzerData] = useState<AnalyzerData | null>(null);
+  const [language, setLanguage] = useState<LanguageOption>('romaji');
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
 
@@ -18,7 +24,6 @@ export default function Visualizer() {
       audio.addEventListener('play', handlePlay);
       audio.addEventListener('pause', handlePause);
       
-      // Attempt to autoplay
       audio.play().catch(error => {
         console.log("Autoplay prevented:", error);
       });
@@ -44,7 +49,7 @@ export default function Visualizer() {
   const setupAudioContext = () => {
     const audio = audioRef.current;
     if (audio) {
-      audioContextRef.current = new (window.AudioContext || window.AudioContext)();
+      audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
       const analyzer = audioContextRef.current.createAnalyser();
       analyzer.fftSize = 1024;
 
@@ -61,8 +66,9 @@ export default function Visualizer() {
 
   return (
     <div className="relative w-full h-screen flex flex-col items-center justify-start overflow-hidden">
+      <Navbar language={language} setLanguage={setLanguage} />
       {analyzerData && isPlaying && <WaveForm analyzerData={analyzerData} />}
-      <div className="mt-4">
+      <div className="mt-4 z-10">
         <audio 
           ref={audioRef}
           src="/Hikarunara.mp3" 
@@ -71,6 +77,9 @@ export default function Visualizer() {
           className="max-w-full"
         />
       </div>
+      <LyricDisplay audioRef={audioRef} language={language} lyricsData={lyricsData} />
     </div>
   );
 }
+
+export default Visualizer;

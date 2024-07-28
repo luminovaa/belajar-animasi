@@ -1,3 +1,25 @@
+import { LyricLine, LyricsData } from '@/components/lyrics/type';
+
+const createLyrics = (texts: string[], startTimes: number[]): LyricLine[] => {
+  return texts.map((text, index) => ({
+    text,
+    startTime: startTimes[index]
+  }));
+};
+
+const startTimes = [
+  17, 20, 23, 29, 35, 
+  41 , 44, 47,  
+  56, 59, 62, 64, 68, 71, 74, 76,
+  82, 88, 93, 99,
+  105, 108, 111,
+  120, 123, 126, 129, 132, 135, 138, 141,
+  146, 151, 156,162, 170, 172, 175,
+  182, 184, 187, 190, 194, 196, 199, 202, 
+  206, 213, 219, 224, 240, 241 
+];
+
+
 const romaji: string[] = [
   "Ameagari no niji mo",
   "Rin to saita hana mo",
@@ -304,4 +326,10 @@ const jawa: string[] = [
 ];
 
 
-export {inggris, romaji, indonesia, kanji, jawa}
+export const lyricsData: LyricsData = {
+  inggris: createLyrics(inggris, startTimes),
+  romaji: createLyrics(romaji, startTimes),
+  indonesia: createLyrics(indonesia, startTimes),
+  kanji: createLyrics(kanji, startTimes),
+  jawa: createLyrics(jawa, startTimes),
+};
