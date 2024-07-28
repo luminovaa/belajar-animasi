@@ -1,5 +1,6 @@
 import React from 'react';
-import Sakura from './sakura';
+import Sakura from './sakura/sakura';
+
 const VideoBackground = () => {
   return (
     <div className="relative w-full h-screen overflow-hidden">

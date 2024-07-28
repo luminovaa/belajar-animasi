@@ -15,7 +15,7 @@ const SakuraPetal: React.FC<SakuraPetalProps> = ({ style, fallDistance }) => {
         alt="Sakura Petal"
         width={20}
         height={20}
-        className={`w-auto h-auto animate-fall`}
+        className="w-auto h-auto animate-fall"
         style={{
           '--fall-distance': `${fallDistance}px`,
         } as React.CSSProperties}
@@ -23,4 +23,5 @@ const SakuraPetal: React.FC<SakuraPetalProps> = ({ style, fallDistance }) => {
     </div>
   );
 };
+
 export default SakuraPetal;
