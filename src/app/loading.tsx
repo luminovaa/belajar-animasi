@@ -6,7 +6,7 @@ interface LoadingProps {
 }
 const Loading: React.FC<LoadingProps> = ({progress}) => {
   return (
-    <div className="flex flex-col justify-center items-center h-screen bg-pink-100">
+    <div className="flex flex-col justify-center items-center h-screen overflow-hidden bg-pink-100">
       <div className="flex justify-center items-end h-16">
         {['♩', '♪', '♫', '♬'].map((note, index) => (
           <span 

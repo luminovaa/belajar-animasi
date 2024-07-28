@@ -3,6 +3,7 @@ export type LanguageOption = 'inggris' | 'romaji' | 'indonesia' | 'kanji' | 'jaw
 export interface LyricLine {
   text: string;
   startTime: number;
+  endTime: number;
 }
 
 export interface LyricsData {

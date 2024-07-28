@@ -1,22 +1,35 @@
 import { LyricLine, LyricsData } from '@/components/lyrics/type';
 
-const createLyrics = (texts: string[], startTimes: number[]): LyricLine[] => {
+const createLyrics = (texts: string[], startTimes: number[], endTimes: number[]): LyricLine[] => {
   return texts.map((text, index) => ({
     text,
-    startTime: startTimes[index]
+    startTime: startTimes[index],
+    endTime: endTimes[index],
   }));
 };
 
 const startTimes = [
-  17, 20, 23, 29, 35, 
+  17, 20, 23.5, 29, 35, 
   41 , 44, 47,  
-  56, 59, 62, 64, 68, 71, 74, 76,
+  56, 59, 62, 64.5, 68, 70.5, 74, 76,
   82, 88, 93, 99,
   105, 108, 111,
   120, 123, 126, 129, 132, 135, 138, 141,
   146, 151, 156,162, 170, 172, 175,
   182, 184, 187, 190, 194, 196, 199, 202, 
-  206, 213, 219, 224, 240, 241 
+  206, 213, 219, 224
+]; 
+
+const endTimes = [
+  19.5, 23, 28, 34, 40, 
+  43.5 , 46.5, 55,  
+  58.5, 61.5, 64, 67.5, 70, 73.5, 75.5, 81,
+  87, 92.5, 98,104.5,
+  107.5, 110.5, 119,
+  122.5, 125.5, 128.5, 132.5, 134.5, 137.5, 140.5, 145,
+  150, 155, 161,169, 171.5, 174.5, 181,
+  183.5, 186.5, 189.5, 193.5, 195.5, 198.5, 201.5, 205.5, 
+  212, 218, 223.5, 240
 ];
 
 
@@ -327,9 +340,9 @@ const jawa: string[] = [
 
 
 export const lyricsData: LyricsData = {
-  inggris: createLyrics(inggris, startTimes),
-  romaji: createLyrics(romaji, startTimes),
-  indonesia: createLyrics(indonesia, startTimes),
-  kanji: createLyrics(kanji, startTimes),
-  jawa: createLyrics(jawa, startTimes),
+  inggris: createLyrics(inggris, startTimes, endTimes),
+  romaji: createLyrics(romaji, startTimes, endTimes),
+  indonesia: createLyrics(indonesia, startTimes, endTimes),
+  kanji: createLyrics(kanji, startTimes, endTimes),
+  jawa: createLyrics(jawa, startTimes, endTimes),
 };

@@ -18,3 +18,22 @@
 .animate-fall {
   animation: fall 3s linear;
 }
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: white;
+  border-radius: 50%;
+  animation: sparkle 5s infinite;
+}
+
+.sparkle-container {
+  position: relative;
+  overflow: hidden;
+}

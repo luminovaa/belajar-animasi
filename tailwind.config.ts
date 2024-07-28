@@ -10,7 +10,10 @@ const config: Config = {
     extend: {
       animation: {
         fall: 'fall 3s linear'
-      }
+      },
+      colors: {
+        'pink-500': '#ec4899',
+      },
     },
   },
   plugins: [],
