@@ -27,7 +27,7 @@ const useSakuraPetals = () => {
       y,
       rotation: Math.random() * 360,
       scale: 0.5 + Math.random() * 0.5,
-      fallDistance: Math.min(windowHeight - y, windowHeight * 1) 
+      fallDistance: Math.min(windowHeight * 1) 
     };
     setPetals((prevPetals) => [...prevPetals, newPetal]);
 

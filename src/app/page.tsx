@@ -5,6 +5,8 @@ import Footer from "@/components/footer";
 import Visualizer from "@/components/visualizer/visualizer";
 import Loading from "./loading";
 import { useEffect, useState } from "react";
+import PaperView from "@/components/content";
+import Sakura from "@/components/sakura/sakura";
 
 const loadAsset = (assetName: string, delay: number): Promise<void> => {
   return new Promise((resolve) => {
@@ -51,9 +53,12 @@ const Home: React.FC = () => {
 
   return (
     <main className="relative h-screen">
-      <header className="absolute w-full z-50">
+      
+      
+      <header className="absolute w-full">
         <Visualizer />
       </header>
+      
       <Footer />
       <VideoBackground />
     </main>

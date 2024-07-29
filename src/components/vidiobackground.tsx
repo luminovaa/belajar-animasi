@@ -1,5 +1,6 @@
 import React from "react";
 import Sakura from "./sakura/sakura";
+import PaperView from "@/components/content/index";
 
 const VideoBackground = () => {
   return (
@@ -13,7 +14,10 @@ const VideoBackground = () => {
         <source src="/wallpaper.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+      
       <Sakura />
+{/*       
+      <PaperView/> */}
     </div>
   );
 };
