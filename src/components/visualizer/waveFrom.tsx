@@ -31,7 +31,7 @@ function animateBars(
       "#ff4cdf",
       "#ff99ed",
       "#cc00a8",
-      "#f44336",
+      "#660054",
     ][blueShade];
     canvasCtx.fillStyle = blueHex;
     canvasCtx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);

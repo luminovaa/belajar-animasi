@@ -53,7 +53,7 @@ const AnimatedLyrics: React.FC<AnimatedLyricsProps> = ({ currentLyric }) => {
   };
 
   return (
-    <div className="relative w-full h-40">
+    <div className="relative w-full h-40 max-sm:px-3">
       <AnimatePresence mode="wait">
         {currentLyric && (
           <motion.div
@@ -66,16 +66,15 @@ const AnimatedLyrics: React.FC<AnimatedLyricsProps> = ({ currentLyric }) => {
           >
             {currentLyric.text.split(' ').map((word, index) => (
               <motion.span
-              key={index}
-              className="inline-block text-2xl capitalize font-bold mr-2 mb-2"
-              variants={lyricVariants}
-              style={{
-                textShadow: '0 0 10px rgba(0,0,0,1), 0 0 20px rgba(0,0,0,0.7), 0 0 30px rgba(0,0,0,0.6)',
-              }}
-            >
-              {word}
-            </motion.span>
-            
+                key={index}
+                className="inline-block text-2xl max-sm:text-lg capitalize font-bold mr-2 mb-2"
+                variants={lyricVariants}
+                style={{
+                  textShadow: '0 0 10px rgba(255,255,255,0.7), 0 0 20px rgba(255,255,255,0.5), 0 0 30px rgba(255,255,255,0.3)',
+                }}
+              >
+                {word}
+              </motion.span>
             ))}
           </motion.div>
         )}

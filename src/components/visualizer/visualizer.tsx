@@ -66,10 +66,10 @@ const Visualizer: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-screen flex flex-col items-center justify-start overflow-hidden">
+    <div className="relative w-full h-screen flex flex-col items-center  justify-start overflow-hidden">
       <Navbar language={language} setLanguage={setLanguage} />
       {analyzerData && isPlaying && <WaveForm analyzerData={analyzerData} />}
-      <div className="mt-4 z-10 w-full max-w-3xl">
+      <div className="mt-2 z-10 w-full max-w-3xl max-sm:max-w-xs ">
         <audio 
           ref={audioRef}
           src="/Hikarunara.mp3" 

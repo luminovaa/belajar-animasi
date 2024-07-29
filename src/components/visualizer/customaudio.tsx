@@ -106,7 +106,7 @@ const CustomAudioPlayer: React.FC<CustomAudioPlayerProps> = ({ audioRef }) => {
       </div>
     </div>
     
-    <div className="text-sm whitespace-nowrap">
+    <div className="text-sm whitespace-nowrap max-sm:hidden">
       {formatTime(currentTime)} / {formatTime(duration)}
     </div>
     
