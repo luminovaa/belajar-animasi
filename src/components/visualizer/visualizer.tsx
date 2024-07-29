@@ -17,7 +17,7 @@ const Visualizer: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [analyzerData, setAnalyzerData] = useState<AnalyzerData | null>(null);
   const [language, setLanguage] = useState<LanguageOption>("romaji");
-  const [showPaperView, setShowPaperView] = useState<boolean>(true);
+  const [showPaperView, setShowPaperView] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
 
@@ -73,10 +73,11 @@ const Visualizer: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-screen flex flex-col items-center justify-start overflow-hidden">
-      <div className="mt-2 z-50 w-full max-w-3xl max-sm:max-w-xs">
-        <Navbar language={language} setLanguage={setLanguage} />
+    <div className="relative w-full z-50 h-screen flex flex-col items-center justify-start overflow-hidden">
         {analyzerData && isPlaying && <WaveForm analyzerData={analyzerData} />}
+        <Navbar language={language} setLanguage={setLanguage} />
+      
+      <div className="mt-2 z-40 w-full max-w-3xl max-sm:max-w-xs">
         <audio ref={audioRef} src="/Hikarunara.mp3" loop controls={false} />
         <CustomAudioPlayer audioRef={audioRef} />
       </div>
@@ -88,7 +89,7 @@ const Visualizer: React.FC = () => {
         />
       </div>
       {showPaperView && (
-        <div className="absolute  z-20">
+        <div className=" z-20">
           <PaperView language={language} />
         </div>
       )}
