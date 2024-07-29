@@ -73,7 +73,7 @@ const WaveForm = ({ analyzerData }: { analyzerData: AnalyzerData }) => {
   }, [width, height]);
 
   return (
-    <canvas className="absolute w-full opacity-50 bottom-0 flex justify-end items-center h-full max-h-[200px] -z-10"
+    <canvas className="absolute w-full opacity-50 max-sm:opacity-100 bottom-0 flex justify-end items-center h-full max-h-[200px] -z-10"
       ref={canvasRef}
       // width={width}
       // height={height}

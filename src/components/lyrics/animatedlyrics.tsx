@@ -70,7 +70,7 @@ const AnimatedLyrics: React.FC<AnimatedLyricsProps> = ({ currentLyric }) => {
                 className="inline-block text-2xl max-sm:text-lg capitalize font-bold mr-2 mb-2"
                 variants={lyricVariants}
                 style={{
-                  textShadow: '0 0 10px rgba(255,255,255,0.7), 0 0 20px rgba(255,255,255,0.5), 0 0 30px rgba(255,255,255,0.3)',
+                  textShadow: '0 0 10px rgba(200,200,200,0.5), 0 0 20px rgba(200,200,200,0.3), 0 0 30px rgba(200,200,200,0.1)',
                 }}
               >
                 {word}
