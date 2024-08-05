@@ -30,7 +30,7 @@ const AnimatedLyrics: React.FC<AnimatedLyricsProps> = ({ currentLyric }) => {
       y: 0, 
       rotateX: 0,
       scale: 1,
-      color: "#ff69b4",
+      color: "#ec4899",
       filter: "blur(0px)",
       transition: {
         type: "spring",
@@ -67,7 +67,7 @@ const AnimatedLyrics: React.FC<AnimatedLyricsProps> = ({ currentLyric }) => {
             {currentLyric.text.split(' ').map((word, index) => (
               <motion.span
                 key={index}
-                className="inline-block text-2xl max-sm:text-lg capitalize font-bold mr-2 mb-2"
+                className="inline-block text-3xl max-sm:text-lg capitalize font-bold mr-2 mb-2"
                 variants={lyricVariants}
                 style={{
                   textShadow: '0 0 10px rgba(200,200,200,0.5), 0 0 20px rgba(200,200,200,0.3), 0 0 30px rgba(200,200,200,0.1)',

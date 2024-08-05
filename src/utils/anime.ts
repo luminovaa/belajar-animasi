@@ -1,5 +1,5 @@
 import { LanguageOption } from '@/components/lyrics/type';
-export const tentangLagu: Record<LanguageOption, string[]> = {
+export const TentangAnime: Record<LanguageOption, string[]> = {
     inggris: [ 
         "The song Hikaru Nara created by Goose House tells the story of a woman who helps with full hope, so that the man can get through difficult times and despair to rise again and be brave to face problems and move forward. The reason I chose this song, because I like this song and I am interested when in the lyrics of this song there are words and meanings that are very beautiful in it. Although it has a love theme, the true meaning in these lyrics is hope."
     ],
@@ -14,4 +14,4 @@ export const tentangLagu: Record<LanguageOption, string[]> = {
     jawa: [
          "ngisahaké babagan usaha wong wadon sing nulungi kanthi pangarep-arep sing kebak, Lagu Hikaru Nara sing digawé dening Goose House iki supaya wong lanang bisa ngliwati masa angel lan keterpurukan kanggo tangi maneh lan wani ngadhepi masalah lan maju. Alasanku njupuk lagu iki, amarga aku seneng lagu iki lan aku kasengsem nalika ing lirik lagu iki ana tembung lan makna sing apik banget ing njero. Sanajan temane katresnan, makna sejati ing lirik iki yaiku pangarep - arep.",
     ],
-  };;
+  };

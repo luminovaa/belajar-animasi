@@ -37,7 +37,7 @@ interface LyricDisplayProps {
     }, [audioRef, lyrics]);
   
     return (
-      <div className="lyric-display absolute -bottom-3 left-0 right-0 z-10">
+      <div className="lyric-display font-baloo absolute -bottom-3 left-0 right-0 z-10">
         <AnimatedLyrics currentLyric={currentLyric} />
       </div>
     );

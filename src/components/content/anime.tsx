@@ -1,14 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import {ReactTyped} from "react-typed"; // Hilangkan { } karena ReactTyped adalah default export
-import { tentangLagu } from "@/utils/tentanglagu";
+import { TentangAnime } from "@/utils/anime";
 import { LanguageOption } from "@/components/lyrics/type";
 
 interface LaguProps {
   language: LanguageOption;
 }
 
-export default function Lagu({ language }: LaguProps) {
+export default function Anime({ language }: LaguProps) {
   return (
     <div className="p-5 flex justify-center items-center min-h-screen h-96">
       <div
@@ -16,14 +16,14 @@ export default function Lagu({ language }: LaguProps) {
       animate-pink-pulse w-[40rem] flex flex-col items-center"
       >
         <Image
-          src="/YLIA1.jpg"
+          src="/anime.jpg"
           alt="YLIA 1"
           width={300}
           height={100}
           className="rounded-md mb-4 shadow-2xl shadow-pink-500"
         />
         <div className="text-pink-400 font-baloo max-sm:text-sm text-lg capitalize text-justify">
-          <ReactTyped strings={tentangLagu[language]} typeSpeed={25} />
+          <ReactTyped strings={TentangAnime[language]} typeSpeed={25} />
         </div>
       </div>
     </div>
