@@ -156,24 +156,24 @@ const indonesia: string[] = [
 ];
 
 const inggris: string[] = [
-  "The rainbow after the rain",
-  "The flower that bloomed gracefully",
-  "The colors overflowing",
-  "In the crimson sky you gaze at",
-  "That day I fell in love",
+  "A rainbow after rain",
+  "and a flower that bloomed with the cold",
+  "are abundantly changing colors",
+  "That day, I fell in love with you",
+  "who looked up at the blazing red sky",
 
-  "That momentary dramatic",
-  "Every frame in the film",
-  "Won't disappear, engraved in my heart",
+  "That one instant in a ",
+  "scene of the dramatic film",
+  "Won't disappear, because it's etched into my heart",
 
   "It's you, it's you",
   "Who taught me",
-  "If the darkness can shine",
-  "It will become a starry sky",
-  "Even sadness will turn into a smile",
-  "Don't hide it anymore",
-  "Every shining star",
-  "Will illuminate you",
+  "If the darkness shines too",
+  "then it'll become a night of stars",
+  "Don't hide your sadness ",
+  "behind a laughing face anymore",
+  "Because all the twinkling stars",
+  "will shine on you",
 
   "Welcoming the morning sun without sleep",
   "Piercing sharply",

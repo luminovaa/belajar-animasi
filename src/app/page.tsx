@@ -5,7 +5,7 @@ import Footer from "@/components/footer";
 import Visualizer from "@/components/visualizer/visualizer";
 import Loading from "./loading";
 import { useEffect, useState } from "react";
-import PaperView from "@/components/content";
+import PaperView from "@/components/content/lagu";
 import Sakura from "@/components/sakura/sakura";
 
 const loadAsset = (assetName: string, delay: number): Promise<void> => {

@@ -5,7 +5,7 @@ import { LanguageOption } from "@/components/lyrics/type";
 import { lyricsData } from "@/utils/lyrics";
 import Navbar from "@/components/navbar";
 import CustomAudioPlayer from "./customaudio";
-import PaperView from "../content";
+import PaperView from "../content/lagu";
 
 interface AnalyzerData {
   analyzer: AnalyserNode;
