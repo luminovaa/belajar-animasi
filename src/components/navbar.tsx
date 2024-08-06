@@ -18,12 +18,8 @@ const options = [
 ];
 
 export default function Navbar({ language, setLanguage }: NavbarProps) {
-  const handleChange = (
-    selectedOption: { value: LanguageOption; label: string } | null
-  ) => {
-    if (selectedOption) {
-      setLanguage(selectedOption.value);
-    }
+  const handleChange = (selectedOption: any) => {
+    setLanguage(selectedOption.value as LanguageOption);
   };
 
   const customStyles = {
@@ -58,8 +54,8 @@ export default function Navbar({ language, setLanguage }: NavbarProps) {
 
   return (
     <div className="absolute flex flex-col max-sm:text-xs top-2 text-white right-8 max-sm:right-0 max-sm:top-10">
-      <Select<{ value: LanguageOption; label: string }>
-        value={options.find((option) => option.value === language)}
+       <Select
+        value={options.find(option => option.value === language)}
         onChange={handleChange}
         isSearchable={false}
         options={options}

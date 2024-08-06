@@ -38,6 +38,7 @@
   overflow: hidden;
 }
 
+
 @font-face {
   font-family: "Baloo";
   src: url("../../public/Baloo-Regular.ttf") format("truetype");

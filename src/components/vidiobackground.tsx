@@ -1,6 +1,5 @@
 import React from "react";
 import Sakura from "./sakura/sakura";
-import PaperView from "@/components/content/lagu";
 
 const VideoBackground = () => {
   return (
@@ -16,8 +15,6 @@ const VideoBackground = () => {
       </video>
       
       <Sakura />
-{/*       
-      <PaperView/> */}
     </div>
   );
 };

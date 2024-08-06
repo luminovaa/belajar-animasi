@@ -17,7 +17,7 @@ const ReusableButton: React.FC<ReusableButtonProps> = ({
     <button
       onClick={onClick}
       className={`
-        hover:animate-[ease-in-out] 
+        transition duration-300 ease-in-out 
         py-2 px-4 rounded shadow-lg z-30 
         ${isActive ? "bg-pink-800 text-white" : "bg-pink-500 text-white"}
         ${className}
