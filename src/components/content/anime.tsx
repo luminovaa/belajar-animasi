@@ -1,31 +1,31 @@
 import React from "react";
 import Image from "next/image";
-import {ReactTyped} from "react-typed"; // Hilangkan { } karena ReactTyped adalah default export
 import { TentangAnime } from "@/utils/anime";
 import { LanguageOption } from "@/components/lyrics/type";
+import { Card } from "@/components/Reusable/card";
+import { TypedText } from "@/components/Reusable/typedtext";
 
-interface LaguProps {
+interface AnimeProps {
   language: LanguageOption;
+  onClose: () => void;
 }
 
-export default function Anime({ language }: LaguProps) {
+export default function Anime({ language, onClose }: AnimeProps) {
   return (
-    <div className="p-5 flex justify-center items-center min-h-screen h-96">
-      <div
-        className="bg-black bg-opacity-70 border-2 border-pink-400 rounded-lg p-5 shadow-[0_0_10px_#ff69b4,0_0_20px_#ff69b4,0_0_30px_#ff69b4] 
-      animate-pink-pulse w-[40rem] flex flex-col items-center"
-      >
-        <Image
-          src="/anime.jpg"
-          alt="YLIA 1"
-          width={300}
-          height={100}
-          className="rounded-md mb-4 shadow-2xl shadow-pink-500"
-        />
-        <div className="text-pink-400 font-baloo max-sm:text-sm text-lg capitalize text-justify">
-          <ReactTyped strings={TentangAnime[language]} typeSpeed={25} />
+    <div className="flex justify-center items-center min-h-screen p-4">
+      <Card onClose={onClose}>
+        <p className="text-pink-400 font-baloo text-xl sm:text-2xl capitalize text-center mb-4">Shigatsu Wa Kimino Uso</p>
+        <div className="relative w-full max-w-[300px] h-[200px] mb-4">
+          <Image
+            src="/anime.jpg"
+            alt="Anime"
+            layout="fill"
+            objectFit="cover"
+            className="rounded-md shadow-2xl shadow-pink-500"
+          />
         </div>
-      </div>
+        <TypedText strings={TentangAnime[language]} />
+      </Card>
     </div>
   );
 }

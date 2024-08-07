@@ -6,6 +6,11 @@ import { lyricsData } from "@/utils/lyrics";
 import Navbar from "@/components/navbar";
 import CustomAudioPlayer from "./customaudio";
 import Lagu from "../content/lagu";
+import Anime from "../content/anime";
+import SidebarButton from "../Reusable/siderbutton";
+import { GrFormClose } from "react-icons/gr";
+import { GiHamburgerMenu } from "react-icons/gi";
+
 interface AnalyzerData {
   analyzer: AnalyserNode;
   bufferLength: number;
@@ -17,8 +22,12 @@ const Visualizer: React.FC = () => {
   const [analyzerData, setAnalyzerData] = useState<AnalyzerData | null>(null);
   const [language, setLanguage] = useState<LanguageOption>("romaji");
   const [showLagu, setShowLagu] = useState<boolean>(false);
+  const [showAnime, setShowAnime] = useState<boolean>(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [activeContent, setActiveContent] = useState<"lagu" | "anime" | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
+  const sidebarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -71,11 +80,55 @@ const Visualizer: React.FC = () => {
     setShowLagu((prev) => !prev);
   };
 
+  const toggleAnime = () => {
+    setShowAnime((prev) => !prev);
+  };
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen((prev) => !prev);
+  };
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
+
+  // const handleContentClick = (action: () => void) => {
+  //   action();
+  //   closeSidebar();
+  // };
+
+  const handleClose = () => {
+    setActiveContent(null);
+  };
+  const handleContentToggle = (content: 'lagu' | 'anime') => {
+    if (activeContent === content) {
+      setActiveContent(null);
+    } else {
+      setActiveContent(content);
+    }
+    closeSidebar();
+  };
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target as Node)
+      ) {
+        closeSidebar();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="relative w-full z-50 h-screen flex flex-col items-center justify-start overflow-hidden">
-        {analyzerData && isPlaying && <WaveForm analyzerData={analyzerData} />}
-        <Navbar language={language} setLanguage={setLanguage} />
-      
+      {analyzerData && isPlaying && <WaveForm analyzerData={analyzerData} />}
+      <div className="hidden md:block">
+      <Navbar language={language} setLanguage={setLanguage} />
+      </div>
       <div className="mt-2 z-40 w-full max-w-3xl max-sm:max-w-xs">
         <audio ref={audioRef} src="/Hikarunara.mp3" loop controls={false} />
         <CustomAudioPlayer audioRef={audioRef} />
@@ -87,19 +140,68 @@ const Visualizer: React.FC = () => {
           lyricsData={lyricsData}
         />
       </div>
-      {showLagu && (
-        <div className=" z-20">
-          <Lagu language={language} />
+      {activeContent === 'lagu' && (
+        <div className="z-20">
+          <Lagu language={language} onClose={handleClose}/>
         </div>
       )}
+      {activeContent === 'anime' && (
+        <div className="z-20">
+          <Anime language={language} onClose={handleClose} />
+        </div>
+      )}
+
       <button
-        onClick={toggleLagu}
-        className={` hover:animate-[ease-in-out]] fixed top-20 -left-2 py-2 px-4 rounded shadow-lg z-30 ${
-          showLagu ? "bg-pink-800 text-white" : "bg-pink-500 text-white"
+        onClick={toggleSidebar}
+        className="md:hidden fixed top-2 -left-2 z-40 bg-pink-500 opacity-70 ml-1  text-white py-2 px-3 rounded shadow-lg"
+      >
+        <GiHamburgerMenu className="h-6 " />
+      </button>
+
+      {/* Sidebar for mobile */}
+      <div
+        ref={sidebarRef}
+        className={`md:hidden fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        Lagu
-      </button>
+        <div className="flex flex-col p-4 space-y-4">
+          <button
+            onClick={closeSidebar}
+            className="self-end text-gray-500 hover:text-gray-700"
+          >
+            <GrFormClose className="w-10 h-auto" />
+          </button>
+          
+          <Navbar language={language} setLanguage={setLanguage} isMobile={true} />
+          <SidebarButton
+            onClick={() => handleContentToggle('anime')}
+            isActive={activeContent === 'anime'}
+            label="Anime"
+          />
+          <SidebarButton
+            onClick={() => handleContentToggle('lagu')}
+            isActive={activeContent === 'lagu'}
+            label="Lagu"
+          />
+        </div>
+      </div>
+
+      {/* Buttons for desktop */}
+      <div className="hidden md:block">
+        <div className="fixed flex flex-col top-20 -left-2 space-y-4 opacity-50">
+          <SidebarButton
+            onClick={() => handleContentToggle('anime')}
+            isActive={activeContent === 'anime'}
+            label="Anime"
+          />
+        <SidebarButton
+            onClick={() => handleContentToggle('lagu')}
+            isActive={activeContent === 'lagu'}
+            label="Lagu"
+          />
+        </div>
+      </div>
     </div>
   );
 };
