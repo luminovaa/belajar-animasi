@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import WaveForm from "./waveFrom";
 import LyricDisplay from "@/components/lyrics/lyricsdisplay";
-import { LanguageOption } from "@/components/lyrics/type";
+import { LanguageOption } from "@/utils/type";
 import { lyricsData } from "@/utils/lyrics";
 import Navbar from "@/components/navbar";
 import CustomAudioPlayer from "./customaudio";

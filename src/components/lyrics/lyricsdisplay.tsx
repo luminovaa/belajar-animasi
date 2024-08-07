@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { LyricsData, LanguageOption, LyricLine } from './type';
+import { LyricsData, LanguageOption, LyricLine } from '../../utils/type';
 import { motion, AnimatePresence } from 'framer-motion';
 import AnimatedLyrics from './animatedlyrics';
 

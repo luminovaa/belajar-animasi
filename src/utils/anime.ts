@@ -1,4 +1,4 @@
-import { LanguageOption } from '@/components/lyrics/type';
+import { LanguageOption } from '@/utils/type';
 export const TentangAnime: Record<LanguageOption, string[]> = {
      indonesia: [
           "Shigatsu wa Kimi no Uso (Your Lie in April) adalah sebuah anime romantis yang mengisahkan perjalanan emosional seorang pianis jenius bernama Kousei Arima. Setelah kehilangan ibunya yang juga merupakan guru pianonya, Kousei mengalami trauma yang membuatnya tidak bisa mendengar suara piano lagi meskipun pendengarannya normal.",

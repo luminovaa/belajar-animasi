@@ -2,7 +2,7 @@
 
 import React from "react";
 import Select from "react-select";
-import { LanguageOption } from "@/components/lyrics/type";
+import { LanguageOption } from "@/utils/type";
 
 interface NavbarProps {
   language: LanguageOption;

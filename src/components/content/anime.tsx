@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { TentangAnime } from "@/utils/anime";
-import { LanguageOption } from "@/components/lyrics/type";
+import { LanguageOption } from "@/utils/type";
 import { Card } from "@/components/Reusable/card";
 import { TypedText } from "@/components/Reusable/typedtext";
 

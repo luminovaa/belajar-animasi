@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { LanguageOption } from "@/components/lyrics/type";
+import { LanguageOption } from "@/utils/type";
 import { Card } from "@/components/Reusable/card";
 import { TentangCharacters, CharacterNames, CharacterDescriptions } from "@/utils/character";
 import {  GrLinkNext, GrLinkPrevious } from "react-icons/gr";
@@ -33,7 +33,7 @@ export default function Character({ language, onClose }: CharacterProps) {
   return (
     <div className="flex justify-center items-center min-h-screen p-4">
       <Card onClose={onClose}>
-        <p className="text-pink-400 font-baloo text-xl mb-4">{CharacterNames[currentCharacter.id][language]}</p>
+        <p className="text-pink-400 font-baloo text-2xl mb-4">{CharacterNames[currentCharacter.id][language]}</p>
         <div className="flex flex-col items-center">
           <div className="relative w-48 h-48 mb-4">
             <Image

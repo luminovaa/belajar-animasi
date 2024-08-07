@@ -1,4 +1,4 @@
-import { LanguageOption } from '@/components/lyrics/type';
+import { LanguageOption } from '@/utils/type';
 export const tentangLagu: Record<LanguageOption, string[]> = {
     inggris: [ 
         "The song Hikaru Nara created by Goose House tells the story of a woman who helps with full hope, so that the man can get through difficult times and despair to rise again and be brave to face problems and move forward. The reason I chose this song, because I like this song and I am interested when in the lyrics of this song there are words and meanings that are very beautiful in it. Although it has a love theme, the true meaning in these lyrics is hope."

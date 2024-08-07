@@ -1,4 +1,4 @@
-import { LanguageOption } from '@/components/lyrics/type';
+import { LanguageOption } from '@/utils/type';
 
 interface Character {
     id: string;

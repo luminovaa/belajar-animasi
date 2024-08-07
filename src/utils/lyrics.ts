@@ -1,4 +1,4 @@
-import { LyricLine, LyricsData } from '@/components/lyrics/type';
+import { LyricLine, LyricsData } from '@/utils/type';
 
 const createLyrics = (texts: string[], startTimes: number[], endTimes: number[]): LyricLine[] => {
   return texts.map((text, index) => ({
