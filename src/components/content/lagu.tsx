@@ -21,7 +21,7 @@ export default function Lagu({ language, onClose }: LaguProps) {
             alt="YLIA 1"
             layout="fill"
             objectFit="cover"
-            className="rounded-md shadow-2xl shadow-pink-500"
+            className="rounded-xl shadow-2xl shadow-pink-500"
           />
         </div>
         <TypedText strings={tentangLagu[language]} />

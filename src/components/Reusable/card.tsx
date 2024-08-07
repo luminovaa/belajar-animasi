@@ -8,7 +8,7 @@ interface CardProps {
 export function Card({ children, onClose }: CardProps) {
   return (
     <div className="relative bg-black bg-opacity-70 border-2 border-pink-400 rounded-lg p-5 shadow-[0_0_10px_#ff69b4,0_0_20px_#ff69b4,0_0_30px_#ff69b4] 
-    animate-pink-pulse w-[40rem] max-sm:w-[20rem] min-h-[31rem] flex flex-col items-center">
+    animate-pink-pulse w-[40rem] max-sm:w-[20rem] min-h-[34rem] flex flex-col items-center">
       {onClose && (
         <button 
           onClick={onClose} 

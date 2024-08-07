@@ -10,6 +10,7 @@ import Anime from "../content/anime";
 import SidebarButton from "../Reusable/siderbutton";
 import { GrFormClose } from "react-icons/gr";
 import { GiHamburgerMenu } from "react-icons/gi";
+import Character from "../content/character";
 
 interface AnalyzerData {
   analyzer: AnalyserNode;
@@ -24,7 +25,7 @@ const Visualizer: React.FC = () => {
   const [showLagu, setShowLagu] = useState<boolean>(false);
   const [showAnime, setShowAnime] = useState<boolean>(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [activeContent, setActiveContent] = useState<"lagu" | "anime" | null>(null);
+  const [activeContent, setActiveContent] = useState<"lagu" | "anime" | "caracter" | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
@@ -76,13 +77,7 @@ const Visualizer: React.FC = () => {
     }
   };
 
-  const toggleLagu = () => {
-    setShowLagu((prev) => !prev);
-  };
 
-  const toggleAnime = () => {
-    setShowAnime((prev) => !prev);
-  };
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
@@ -99,7 +94,7 @@ const Visualizer: React.FC = () => {
   const handleClose = () => {
     setActiveContent(null);
   };
-  const handleContentToggle = (content: 'lagu' | 'anime') => {
+  const handleContentToggle = (content: 'lagu' | 'anime' | 'caracter') => {
     if (activeContent === content) {
       setActiveContent(null);
     } else {
@@ -150,6 +145,11 @@ const Visualizer: React.FC = () => {
           <Anime language={language} onClose={handleClose} />
         </div>
       )}
+      {activeContent === 'caracter' && (
+        <div className="z-20">
+          <Character language={language} onClose={handleClose} />
+        </div>
+      )}
 
       <button
         onClick={toggleSidebar}
@@ -194,6 +194,11 @@ const Visualizer: React.FC = () => {
             onClick={() => handleContentToggle('anime')}
             isActive={activeContent === 'anime'}
             label="Anime"
+          />
+          <SidebarButton
+            onClick={() => handleContentToggle('caracter')}
+            isActive={activeContent === 'caracter'}
+            label="Character"
           />
         <SidebarButton
             onClick={() => handleContentToggle('lagu')}

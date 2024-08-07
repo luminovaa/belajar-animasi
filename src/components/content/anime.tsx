@@ -21,7 +21,7 @@ export default function Anime({ language, onClose }: AnimeProps) {
             alt="Anime"
             layout="fill"
             objectFit="cover"
-            className="rounded-md shadow-2xl shadow-pink-500"
+            className="rounded-xl shadow-2xl shadow-pink-500"
           />
         </div>
         <TypedText strings={TentangAnime[language]} />
