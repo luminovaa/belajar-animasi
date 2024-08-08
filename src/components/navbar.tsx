@@ -12,9 +12,9 @@ interface NavbarProps {
 
 const options = [
   { value: "inggris", label: "English" },
-  { value: "romaji", label: "Romaji" },
+  { value: "romaji", label: "Japan - Romaji" },
   { value: "indonesia", label: "Indonesia" },
-  { value: "kanji", label: "Kanji" },
+  { value: "kanji", label: "Japan" },
   { value: "jawa", label: "Jawa" },
 ];
 

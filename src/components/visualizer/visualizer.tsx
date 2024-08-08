@@ -11,6 +11,7 @@ import SidebarButton from "../Reusable/siderbutton";
 import { GrFormClose } from "react-icons/gr";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Character from "../content/character";
+import GalleryView from "../content/gallery";
 
 interface AnalyzerData {
   analyzer: AnalyserNode;
@@ -22,10 +23,8 @@ const Visualizer: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [analyzerData, setAnalyzerData] = useState<AnalyzerData | null>(null);
   const [language, setLanguage] = useState<LanguageOption>("romaji");
-  const [showLagu, setShowLagu] = useState<boolean>(false);
-  const [showAnime, setShowAnime] = useState<boolean>(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [activeContent, setActiveContent] = useState<"lagu" | "anime" | "caracter" | null>(null);
+  const [activeContent, setActiveContent] = useState<"lagu" | "anime" | "caracter" | "gallery"| null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
@@ -94,7 +93,7 @@ const Visualizer: React.FC = () => {
   const handleClose = () => {
     setActiveContent(null);
   };
-  const handleContentToggle = (content: 'lagu' | 'anime' | 'caracter') => {
+  const handleContentToggle = (content: 'lagu' | 'anime' | 'caracter' | 'gallery') => {
     if (activeContent === content) {
       setActiveContent(null);
     } else {
@@ -148,6 +147,11 @@ const Visualizer: React.FC = () => {
       {activeContent === 'caracter' && (
         <div className="z-20">
           <Character language={language} onClose={handleClose} />
+        </div>
+      )}
+      {activeContent === 'gallery' && (
+        <div className="z-20">
+          <GalleryView onClose={handleClose} />
         </div>
       )}
 
@@ -204,6 +208,11 @@ const Visualizer: React.FC = () => {
             onClick={() => handleContentToggle('lagu')}
             isActive={activeContent === 'lagu'}
             label="Lagu"
+          />
+        <SidebarButton
+            onClick={() => handleContentToggle('gallery')}
+            isActive={activeContent === 'gallery'}
+            label="Gallery"
           />
         </div>
       </div>

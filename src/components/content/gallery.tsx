@@ -6,40 +6,36 @@ import { Card } from "@/components/Reusable/card";
 import { TentangCharacters, CharacterNames, CharacterDescriptions } from "@/utils/character";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import { TypedText } from "../Reusable/typedtext";
+import { Gallery } from "@/utils/gallery";
 
-interface CharacterProps {
-  language: LanguageOption;
+interface GalleryViewProps {
   onClose: () => void;
 }
 
-export default function Character({ language, onClose }: CharacterProps) {
-  const [currentCharacterIndex, setCurrentCharacterIndex] = useState(0);
+export default function GalleryView({  onClose }: GalleryViewProps) {
+  const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0);
 
   const handleNext = () => {
-    setCurrentCharacterIndex(
-      (prevIndex) => (prevIndex + 1) % TentangCharacters.length
+    setCurrentGalleryIndex(
+      (prevIndex) => (prevIndex + 1) % Gallery.length
     );
   };
 
   const handlePrevious = () => {
-    setCurrentCharacterIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+    setCurrentGalleryIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   };
 
-  const currentCharacter = TentangCharacters[currentCharacterIndex];
-  const isFirstCharacter = currentCharacterIndex === 0;
-  const isLastCharacter =
-    currentCharacterIndex === TentangCharacters.length - 1;
-  const deskripsi = CharacterDescriptions[currentCharacter.id]?.[language];
+  const currentGallery = Gallery[currentGalleryIndex];
+  const isFirstGallery = currentGalleryIndex === 0;
+  const isLastGallery =
+    currentGalleryIndex === Gallery.length - 1;;
 
   return (
     <div className="flex justify-center items-center min-h-screen p-4">
       <Card onClose={onClose}>
-        <p className="text-pink-400 font-baloo text-2xl mb-4">
-          {CharacterNames[currentCharacter.id][language]}
-        </p>
         <div className="flex flex-col items-center">
           <motion.div
-            key={currentCharacterIndex}
+            key={currentGalleryIndex}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
@@ -47,23 +43,22 @@ export default function Character({ language, onClose }: CharacterProps) {
               ease: 'linear',
                duration: 0.5 
               }}
-            className="relative w-48 h-48 mb-4"
+            className="relative w-[30rem] mt-8 h-[25rem] mb-4"
           >
             <Image
-              src={currentCharacter.photo}
-              alt={CharacterNames[currentCharacter.id][language]}
+              src={currentGallery.photo}
+              alt={currentGallery.id}
               layout="fill"
               objectFit="cover"
-              className="rounded-full shadow-2xl shadow-pink-500"
+              className=" shadow-2xl shadow-pink-500"
             />
           </motion.div>
-          <TypedText strings={[deskripsi]} />
           <div className="absolute bottom-4 right-4 px-4 py-2 space-x-7">
             <button
               onClick={handlePrevious}
-              disabled={isFirstCharacter}
+              disabled={isFirstGallery}
               className={`rounded-md transition-colors ${
-                isFirstCharacter
+                isFirstGallery
                   ? " text-gray-500 cursor-not-allowed"
                   : " text-pink-500 transform hover:scale-150 transition duration-300"
               }`}
@@ -72,9 +67,9 @@ export default function Character({ language, onClose }: CharacterProps) {
             </button>
             <button
               onClick={handleNext}
-              disabled={isLastCharacter}
+              disabled={isLastGallery}
               className={`rounded-md transition-colors ${
-                isLastCharacter
+                isLastGallery
                   ? " text-gray-500 cursor-not-allowed"
                   : "text-pink-500 transform hover:scale-150 transition duration-300"
               }`}
