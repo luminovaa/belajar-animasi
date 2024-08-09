@@ -4,6 +4,8 @@ import Footer from "@/components/footer";
 import Visualizer from "@/components/visualizer/visualizer";
 import Loading from "./loading";
 import { useEffect, useState } from "react";
+import { TourProvider } from "@reactour/tour";
+import { DesktopSteps, MobileSteps } from "@/utils/tour";
 
 const loadAsset = (assetName: string, delay: number): Promise<void> => {
   return new Promise((resolve) => {
@@ -15,6 +17,18 @@ const loadAsset = (assetName: string, delay: number): Promise<void> => {
 };
 const Home: React.FC = () => {
   const [loadingProgress, setLoadingProgress] = useState<number>(0);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     const loadAssets = async () => {
@@ -49,16 +63,15 @@ const Home: React.FC = () => {
   }
 
   return (
-    <main className="relative h-screen">
-      
-      
-      <header className="absolute w-full">
-        <Visualizer />
-      </header>
-      
-      <Footer />
-      <VideoBackground />
-    </main>
+    <TourProvider steps={isMobile ? MobileSteps : DesktopSteps}>
+      <main className="relative h-screen">
+        <header className="absolute w-full">
+          <Visualizer isMobile={isMobile} startTour={loadingProgress === 100}/>
+        </header>
+        <Footer />
+        <VideoBackground />
+      </main>
+    </TourProvider>
   );
 };
 

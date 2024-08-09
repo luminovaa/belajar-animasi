@@ -7,7 +7,7 @@ import { LanguageOption } from "@/utils/type";
 interface NavbarProps {
   language: LanguageOption;
   setLanguage: (value: LanguageOption) => void;
-  isMobile?: boolean;
+  isMobile: boolean;
 }
 
 const options = [
@@ -18,7 +18,7 @@ const options = [
   { value: "jawa", label: "Jawa" },
 ];
 
-export default function Navbar({ language, setLanguage, isMobile = false }: NavbarProps) {
+export default function Navbar({ language, setLanguage, isMobile }: NavbarProps) {
   const handleChange = (selectedOption: any) => {
     setLanguage(selectedOption.value as LanguageOption);
   };
@@ -58,14 +58,18 @@ export default function Navbar({ language, setLanguage, isMobile = false }: Navb
   };
 
   return (
-    <div className={`flex flex-col z-50 ${isMobile ? 'w-full' : 'absolute top-2 right-8 max-sm:right-0 max-sm:top-10'}`}>
-      <Select
-        value={options.find(option => option.value === language)}
-        onChange={handleChange}
-        isSearchable={false}
-        options={options}
-        styles={customStyles}
-      />
+    <div className={`flex flex-col z-50 ${
+      isMobile ? 'w-full' : 'absolute top-2 right-8 max-sm:right-0 max-sm:top-10'
+    }`}>
+      <div className={!isMobile ? 'step-1' : ''}>
+        <Select
+          value={options.find(option => option.value === language)}
+          onChange={handleChange}
+          isSearchable={false}
+          options={options}
+          styles={customStyles}
+        />
+      </div>
     </div>
   );
 }

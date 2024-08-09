@@ -12,6 +12,7 @@ import { GrFormClose } from "react-icons/gr";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Character from "../content/character";
 import GalleryView from "../content/gallery";
+import { useTour } from "@reactour/tour";
 
 interface AnalyzerData {
   analyzer: AnalyserNode;
@@ -19,15 +20,23 @@ interface AnalyzerData {
   dataArray: Uint8Array;
 }
 
-const Visualizer: React.FC = () => {
+interface VisualizerProps {
+  isMobile: boolean;
+  startTour: boolean;
+}
+
+const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [analyzerData, setAnalyzerData] = useState<AnalyzerData | null>(null);
   const [language, setLanguage] = useState<LanguageOption>("romaji");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [activeContent, setActiveContent] = useState<"lagu" | "anime" | "caracter" | "gallery"| null>(null);
+  const [activeContent, setActiveContent] = useState<
+    "lagu" | "anime" | "caracter" | "gallery" | null
+  >(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
+  const { setIsOpen } = useTour();
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -76,8 +85,6 @@ const Visualizer: React.FC = () => {
     }
   };
 
-
-
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
@@ -85,15 +92,12 @@ const Visualizer: React.FC = () => {
     setIsSidebarOpen(false);
   };
 
-  // const handleContentClick = (action: () => void) => {
-  //   action();
-  //   closeSidebar();
-  // };
-
   const handleClose = () => {
     setActiveContent(null);
   };
-  const handleContentToggle = (content: 'lagu' | 'anime' | 'caracter' | 'gallery') => {
+  const handleContentToggle = (
+    content: "lagu" | "anime" | "caracter" | "gallery"
+  ) => {
     if (activeContent === content) {
       setActiveContent(null);
     } else {
@@ -101,6 +105,12 @@ const Visualizer: React.FC = () => {
     }
     closeSidebar();
   };
+  useEffect(() => {
+    if (startTour) {
+      setIsOpen(true);
+    }
+  }, [startTour]);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -118,12 +128,14 @@ const Visualizer: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full z-50 h-screen flex flex-col items-center justify-start overflow-hidden">
+    <div className=" step-4 relative w-full z-50 h-screen flex flex-col items-center justify-start overflow-hidden">
       {analyzerData && isPlaying && <WaveForm analyzerData={analyzerData} />}
-      <div className="hidden md:block">
-      <Navbar language={language} setLanguage={setLanguage} />
-      </div>
-      <div className="mt-2 z-40 w-full max-w-3xl max-sm:max-w-xs">
+      {!isMobile && (
+        <div className="hidden md:block">
+          <Navbar language={language} setLanguage={setLanguage} isMobile={false} />
+        </div>
+      )}
+      <div className="mobilestep-2 step-2 mt-2 z-40 w-full max-w-3xl max-sm:max-w-xs">
         <audio ref={audioRef} src="/Hikarunara.mp3" loop controls={false} />
         <CustomAudioPlayer audioRef={audioRef} />
       </div>
@@ -134,22 +146,22 @@ const Visualizer: React.FC = () => {
           lyricsData={lyricsData}
         />
       </div>
-      {activeContent === 'lagu' && (
+      {activeContent === "lagu" && (
         <div className="z-20">
-          <Lagu language={language} onClose={handleClose}/>
+          <Lagu language={language} onClose={handleClose} />
         </div>
       )}
-      {activeContent === 'anime' && (
+      {activeContent === "anime" && (
         <div className="z-20">
           <Anime language={language} onClose={handleClose} />
         </div>
       )}
-      {activeContent === 'caracter' && (
+      {activeContent === "caracter" && (
         <div className="z-20">
           <Character language={language} onClose={handleClose} />
         </div>
       )}
-      {activeContent === 'gallery' && (
+      {activeContent === "gallery" && (
         <div className="z-20">
           <GalleryView onClose={handleClose} />
         </div>
@@ -157,7 +169,7 @@ const Visualizer: React.FC = () => {
 
       <button
         onClick={toggleSidebar}
-        className="md:hidden fixed top-2 -left-2 z-40 bg-pink-500 opacity-70 ml-1  text-white py-2 px-3 rounded shadow-lg"
+        className="step-2 md:hidden fixed top-2 -left-2 z-40 bg-pink-500 opacity-70 ml-1  text-white py-2 px-3 rounded shadow-lg"
       >
         <GiHamburgerMenu className="h-6 " />
       </button>
@@ -172,20 +184,24 @@ const Visualizer: React.FC = () => {
         <div className="flex flex-col p-4 space-y-4">
           <button
             onClick={closeSidebar}
-            className="self-end text-gray-500 hover:text-gray-700"
+            className="mobilestep-1 self-end text-gray-500 hover:text-gray-700"
           >
             <GrFormClose className="w-10 h-auto" />
           </button>
-          
-          <Navbar language={language} setLanguage={setLanguage} isMobile={true} />
+
+          <Navbar
+            language={language}
+            setLanguage={setLanguage}
+            isMobile={true}
+          />
           <SidebarButton
-            onClick={() => handleContentToggle('anime')}
-            isActive={activeContent === 'anime'}
+            onClick={() => handleContentToggle("anime")}
+            isActive={activeContent === "anime"}
             label="Anime"
           />
           <SidebarButton
-            onClick={() => handleContentToggle('lagu')}
-            isActive={activeContent === 'lagu'}
+            onClick={() => handleContentToggle("lagu")}
+            isActive={activeContent === "lagu"}
             label="Lagu"
           />
         </div>
@@ -193,25 +209,25 @@ const Visualizer: React.FC = () => {
 
       {/* Buttons for desktop */}
       <div className="hidden md:block">
-        <div className="fixed flex flex-col top-20 -left-2 space-y-4 opacity-50">
+        <div className="step-3 fixed flex flex-col top-20 -left-2 space-y-4 opacity-50">
           <SidebarButton
-            onClick={() => handleContentToggle('anime')}
-            isActive={activeContent === 'anime'}
+            onClick={() => handleContentToggle("anime")}
+            isActive={activeContent === "anime"}
             label="Anime"
           />
           <SidebarButton
-            onClick={() => handleContentToggle('caracter')}
-            isActive={activeContent === 'caracter'}
+            onClick={() => handleContentToggle("caracter")}
+            isActive={activeContent === "caracter"}
             label="Character"
           />
-        <SidebarButton
-            onClick={() => handleContentToggle('lagu')}
-            isActive={activeContent === 'lagu'}
+          <SidebarButton
+            onClick={() => handleContentToggle("lagu")}
+            isActive={activeContent === "lagu"}
             label="Lagu"
           />
-        <SidebarButton
-            onClick={() => handleContentToggle('gallery')}
-            isActive={activeContent === 'gallery'}
+          <SidebarButton
+            onClick={() => handleContentToggle("gallery")}
+            isActive={activeContent === "gallery"}
             label="Gallery"
           />
         </div>
