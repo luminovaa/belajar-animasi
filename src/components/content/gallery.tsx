@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Card } from "@/components/Reusable/card";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import { Gallery } from "@/utils/gallery";
+import { CgSpinner } from "react-icons/cg"; 
 
 interface GalleryViewProps {
   onClose: () => void;
@@ -12,6 +13,7 @@ interface GalleryViewProps {
 export default function GalleryView({ onClose }: GalleryViewProps) {
   const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState<boolean[]>([]);
 
   useEffect(() => {
     const checkIsMobile = () => {
@@ -22,6 +24,10 @@ export default function GalleryView({ onClose }: GalleryViewProps) {
     window.addEventListener('resize', checkIsMobile);
 
     return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  useEffect(() => {
+    setImagesLoaded(new Array(Gallery.length).fill(false));
   }, []);
 
   const imagesPerPage = isMobile ? 2 : 4;
@@ -40,6 +46,14 @@ export default function GalleryView({ onClose }: GalleryViewProps) {
     setCurrentGalleryIndex((prev) => Math.max(prev - imagesPerPage, 0));
   };
 
+  const handleImageLoad = (index: number) => {
+    setImagesLoaded((prev) => {
+      const newState = [...prev];
+      newState[currentGalleryIndex + index ] = true;
+      return newState;
+    })
+  }
+
   const isFirstGallery = currentGalleryIndex === 0;
   const isLastGallery = currentGalleryIndex + imagesPerPage >= Gallery.length;
 
@@ -55,6 +69,11 @@ export default function GalleryView({ onClose }: GalleryViewProps) {
               transition={{ duration: 0.1, delay: index * 0.1 }}
               className="relative w-[15rem] h-[15rem]"
             >
+              {!imagesLoaded[currentGalleryIndex + index] && (
+                <div className="absolute inset-0 flex items-center justify-center bg-grey-200 rounded-xl">
+                  <CgSpinner className="animate-spin text-4xl text-pink-500"/>
+                </div>
+              )}
               <Image
                 src={gallery.photo}
                 alt={gallery.id}
@@ -62,6 +81,7 @@ export default function GalleryView({ onClose }: GalleryViewProps) {
                 quality={50}
                 objectFit="cover"
                 className="rounded-xl shadow-2xl shadow-pink-500"
+                onLoadingComplete={() => handleImageLoad(index)}
               />
             </motion.div>
           ))}

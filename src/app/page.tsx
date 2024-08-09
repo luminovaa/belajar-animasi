@@ -63,10 +63,34 @@ const Home: React.FC = () => {
   }
 
   return (
-    <TourProvider steps={isMobile ? MobileSteps : DesktopSteps}>
+    <TourProvider
+      steps={isMobile ? MobileSteps : DesktopSteps}
+      styles={{
+        popover: (base) => ({
+          ...base,
+          "--reactour-accent": "#ec4899",
+          borderRadius: 10,
+        }),
+        maskArea: (base) => ({ ...base, rx: 10 }),
+        maskWrapper: (base) => ({ ...base, color: "#ec4899" }),
+        badge: (base) => ({ ...base, left: "auto", right: "-0.8125em" }),
+        controls: (base) => ({ ...base, marginTop: 10 }),
+        close: (base) => ({ ...base, right: "auto", left: 8, top: 8 }),
+      }}
+      disableDotsNavigation
+      onClickClose={({ setCurrentStep, currentStep, steps, setIsOpen }) => {
+        if (steps) {
+          if (currentStep === steps.length - 1) {
+            setIsOpen(false);
+          }
+          setCurrentStep((s) => (s === steps.length - 1 ? 0 : s + 1));
+        }
+      }}
+      
+    >
       <main className="relative h-screen">
         <header className="absolute w-full">
-          <Visualizer isMobile={isMobile} startTour={loadingProgress === 100}/>
+          <Visualizer isMobile={isMobile} startTour={loadingProgress === 100} />
         </header>
         <Footer />
         <VideoBackground />
