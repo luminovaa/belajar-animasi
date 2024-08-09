@@ -200,9 +200,19 @@ const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
             label="Anime"
           />
           <SidebarButton
+            onClick={() => handleContentToggle("caracter")}
+            isActive={activeContent === "caracter"}
+            label="Character"
+          />
+          <SidebarButton
             onClick={() => handleContentToggle("lagu")}
             isActive={activeContent === "lagu"}
             label="Lagu"
+          />
+          <SidebarButton
+            onClick={() => handleContentToggle("gallery")}
+            isActive={activeContent === "gallery"}
+            label="Gallery"
           />
         </div>
       </div>
