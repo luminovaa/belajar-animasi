@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Card } from "@/components/Reusable/card";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import { Gallery } from "@/utils/gallery";
-import { CgSpinner } from "react-icons/cg"; 
+import { CgSpinner } from "react-icons/cg";
 
 interface GalleryViewProps {
   onClose: () => void;
@@ -21,9 +21,9 @@ export default function GalleryView({ onClose }: GalleryViewProps) {
     };
 
     checkIsMobile();
-    window.addEventListener('resize', checkIsMobile);
+    window.addEventListener("resize", checkIsMobile);
 
-    return () => window.removeEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener("resize", checkIsMobile);
   }, []);
 
   useEffect(() => {
@@ -47,12 +47,14 @@ export default function GalleryView({ onClose }: GalleryViewProps) {
   };
 
   const handleImageLoad = (index: number) => {
-    setImagesLoaded((prev) => {
-      const newState = [...prev];
-      newState[currentGalleryIndex + index ] = true;
-      return newState;
-    })
-  }
+    setTimeout(() => {
+      setImagesLoaded((prev) => {
+        const newState = [...prev];
+        newState[currentGalleryIndex + index] = true;
+        return newState;
+      });
+    }, 1000);
+  };
 
   const isFirstGallery = currentGalleryIndex === 0;
   const isLastGallery = currentGalleryIndex + imagesPerPage >= Gallery.length;
@@ -60,7 +62,11 @@ export default function GalleryView({ onClose }: GalleryViewProps) {
   return (
     <div className="flex justify-center items-center min-h-screen p-4">
       <Card onClose={onClose}>
-        <div className={`grid ${isMobile ? 'grid-cols-1' : 'md:grid-cols-2'} gap-4`}>
+        <div
+          className={`grid ${
+            isMobile ? "grid-cols-1" : "md:grid-cols-2"
+          } gap-4`}
+        >
           {galleryToDisplay.map((gallery, index) => (
             <motion.div
               key={index}
@@ -71,7 +77,7 @@ export default function GalleryView({ onClose }: GalleryViewProps) {
             >
               {!imagesLoaded[currentGalleryIndex + index] && (
                 <div className="absolute inset-0 flex items-center justify-center bg-grey-200 rounded-xl">
-                  <CgSpinner className="animate-spin text-4xl text-pink-500"/>
+                  <CgSpinner className="animate-spin text-4xl text-pink-500" />
                 </div>
               )}
               <Image
@@ -80,7 +86,11 @@ export default function GalleryView({ onClose }: GalleryViewProps) {
                 layout="fill"
                 quality={50}
                 objectFit="cover"
-                className="rounded-xl shadow-2xl shadow-pink-500"
+                className={`rounded-xl shadow-2xl shadow-pink-500 transition-opacity duration-300 ${
+                  imagesLoaded[currentGalleryIndex + index]
+                    ? "opacity-100"
+                    : "opacity-0"
+                }`}
                 onLoadingComplete={() => handleImageLoad(index)}
               />
             </motion.div>
