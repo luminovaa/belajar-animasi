@@ -12,6 +12,10 @@ export const DesktopSteps = [
         content: 'This is Content'
     },
     {
+        selector: '.step-5',
+        content: 'Please give me some feedback'
+    },
+    {
         selector: '.step-4',
         content: 'Try to Click on Anywhere'
     },

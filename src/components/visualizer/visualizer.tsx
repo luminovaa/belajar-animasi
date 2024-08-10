@@ -287,11 +287,13 @@ const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
             isActive={activeContent === "quotes"}
             label="Quotes"
           />
+          <div className="step-5">
           <SidebarButton
             onClick={() => handleContentToggle("feedback")}
             isActive={activeContent === "feedback"}
             label="Feedback"
           />
+          </div>
         </div>
       </div>
     </div>
