@@ -1,5 +1,5 @@
 import React from "react";
-import Sakura from "./sakura/sakura";
+import Sakura from "@/components/sakura/sakura";
 
 const VideoBackground = () => {
   return (

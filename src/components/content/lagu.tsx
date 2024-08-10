@@ -23,7 +23,7 @@ export default function Lagu({ language, onClose }: LaguProps) {
   return (
     <div className="flex justify-center items-center min-h-screen p-4">
       <Card onClose={onClose}>
-        <p className="text-pink-400 font-baloo text-xl sm:text-2xl capitalize text-center mb-4">Why????</p>
+        <p className="text-pink-400 font-baloo text-xl sm:text-2xl capitalize text-center mb-4">Hikarunara</p>
         <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}

@@ -1,4 +1,3 @@
-// components/useSize.ts
 import { useCallback, useEffect, useState } from "react";
 
 const useSize = () => {

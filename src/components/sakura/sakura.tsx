@@ -1,7 +1,7 @@
 'use client'
 import { useEffect } from 'react';
 import useSakuraPetals from '@/hooks/useSakuraPetals';
-import SakuraPetal from './petal';
+import SakuraPetal from '@/components/sakura/petal';
 
 export default function Sakura() {
   const { petals, addPetal } = useSakuraPetals();

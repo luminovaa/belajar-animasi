@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LyricLine } from '../../utils/type';
+import { LyricLine } from '@/utils/type';
 
 interface AnimatedLyricsProps {
   currentLyric: LyricLine | null;
