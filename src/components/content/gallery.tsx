@@ -79,7 +79,7 @@ export default function GalleryView({ onClose }: GalleryViewProps) {
   return (
     <div className="flex justify-center items-center min-h-screen p-4">
       <Card onClose={onClose}>
-        <h2 className="font-baloo mb-3 text-2xl text-pink-500">
+        <h2 className="font-baloo mb-3 text-md md:text-2xl text-pink-500">
           Gallery Shigatsu Wa Kimi No Uso
         </h2>
         <div
@@ -93,7 +93,7 @@ export default function GalleryView({ onClose }: GalleryViewProps) {
               initial={{ opacity: 0, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.1, delay: index * 0.1 }}
-              className="relative w-[15rem] h-[15rem] group overflow-hidden"
+              className="relative sm:w-[15rem] sm:h-[15rem] w-[14rem] h-[14rem] group overflow-hidden"
             >
               {!imagesLoaded[currentGalleryIndex + index] && <LoadingSpinner />}
               <Image
@@ -123,7 +123,7 @@ export default function GalleryView({ onClose }: GalleryViewProps) {
             </motion.div>
           ))}
         </div>
-        <div className="absolute bottom-4 right-4 px-4 py-2  flex flex-col">
+        <div className="absolute bottom-4 right-1 md:right-4 px-4 py-2  flex flex-col">
           <button
             onClick={handleNext}
             disabled={isLastGallery}

@@ -13,6 +13,8 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import Character from "../content/character";
 import GalleryView from "../content/gallery";
 import { useTour } from "@reactour/tour";
+import Fact from "../content/FunFact";
+import Feedback from "../content/Feedback";
 
 interface AnalyzerData {
   analyzer: AnalyserNode;
@@ -31,7 +33,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
   const [language, setLanguage] = useState<LanguageOption>("romaji");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeContent, setActiveContent] = useState<
-    "lagu" | "anime" | "caracter" | "gallery" | null
+    "lagu" | "anime" | "caracter" | "gallery" | "fact" | "feedback" | null
   >(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -96,7 +98,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
     setActiveContent(null);
   };
   const handleContentToggle = (
-    content: "lagu" | "anime" | "caracter" | "gallery"
+    content: "lagu" | "anime" | "caracter" | "gallery" | "fact" | "feedback"
   ) => {
     if (activeContent === content) {
       setActiveContent(null);
@@ -132,7 +134,11 @@ const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
       {analyzerData && isPlaying && <WaveForm analyzerData={analyzerData} />}
       {!isMobile && (
         <div className="hidden md:block">
-          <Navbar language={language} setLanguage={setLanguage} isMobile={false} />
+          <Navbar
+            language={language}
+            setLanguage={setLanguage}
+            isMobile={false}
+          />
         </div>
       )}
       <div className="mobilestep-2 step-2 mt-2 z-40 w-full max-w-3xl max-sm:max-w-xs">
@@ -164,6 +170,16 @@ const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
       {activeContent === "gallery" && (
         <div className="z-20">
           <GalleryView onClose={handleClose} />
+        </div>
+      )}
+      {activeContent === "fact" && (
+        <div className="z-20">
+          <Fact language={language} onClose={handleClose} />
+        </div>
+      )}
+      {activeContent === "feedback" && (
+        <div className="z-20">
+          <Feedback onClose={handleClose} />
         </div>
       )}
 
@@ -207,12 +223,22 @@ const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
           <SidebarButton
             onClick={() => handleContentToggle("lagu")}
             isActive={activeContent === "lagu"}
-            label="Lagu"
+            label="Song"
+          />
+          <SidebarButton
+            onClick={() => handleContentToggle("fact")}
+            isActive={activeContent === "fact"}
+            label="Facts"
           />
           <SidebarButton
             onClick={() => handleContentToggle("gallery")}
             isActive={activeContent === "gallery"}
             label="Gallery"
+          />
+          <SidebarButton
+            onClick={() => handleContentToggle("feedback")}
+            isActive={activeContent === "feedback"}
+            label="Feedback"
           />
         </div>
       </div>
@@ -233,12 +259,22 @@ const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
           <SidebarButton
             onClick={() => handleContentToggle("lagu")}
             isActive={activeContent === "lagu"}
-            label="Lagu"
+            label="Song"
+          />
+          <SidebarButton
+            onClick={() => handleContentToggle("fact")}
+            isActive={activeContent === "fact"}
+            label="Facts"
           />
           <SidebarButton
             onClick={() => handleContentToggle("gallery")}
             isActive={activeContent === "gallery"}
             label="Gallery"
+          />
+          <SidebarButton
+            onClick={() => handleContentToggle("feedback")}
+            isActive={activeContent === "feedback"}
+            label="Feedback"
           />
         </div>
       </div>
