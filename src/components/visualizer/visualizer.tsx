@@ -130,7 +130,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
   }, []);
 
   return (
-    <div className=" step-4 relative w-full z-50 h-screen flex flex-col items-center justify-start overflow-hidden">
+    <div className="step-4 mobilestep-3 relative w-full z-50 h-screen flex flex-col items-center justify-start overflow-hidden">
       {analyzerData && isPlaying && <WaveForm analyzerData={analyzerData} />}
       {!isMobile && (
         <div className="hidden md:block">

@@ -1,11 +1,11 @@
 export const DesktopSteps = [
     {
         selector: '.step-1',
-        content: 'this is to change the language'
+        content: 'This is to Change The Language'
     },
     {
         selector: '.step-2',
-        content: 'this is music audio control '
+        content: 'This is Music Audio Control '
     },
     {
         selector: '.step-3',
@@ -13,17 +13,21 @@ export const DesktopSteps = [
     },
     {
         selector: '.step-4',
-        content: 'Try to click on anywhere'
+        content: 'Try to Click on Anywhere'
     },
 ]
 
 export const MobileSteps = [
     {
         selector: '.mobilestep-1',
-        content: 'this is sidebar '
+        content: 'This is Sidebar '
     },
     {
-        selector: '.step-2',
-        content: 'this is music audio control '
+        selector: '.mobilestep-2',
+        content: 'This is Music Audio Control '
+    },
+    {
+        selector: '.mobilestep-3',
+        content: 'Try to Touch on anywhere'
     },
 ]
