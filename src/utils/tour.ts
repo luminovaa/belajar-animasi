@@ -22,9 +22,14 @@ export const DesktopSteps = [
 ]
 
 export const MobileSteps = [
+    
+    {
+        selector: '.mobilestep-3',
+        content: 'Open on Desktop Website For More Experience'
+    },
     {
         selector: '.mobilestep-1',
-        content: 'This is Sidebar '
+        content: 'This is Sidebar'
     },
     {
         selector: '.mobilestep-2',

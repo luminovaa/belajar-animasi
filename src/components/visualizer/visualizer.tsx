@@ -16,6 +16,7 @@ import { useTour } from "@reactour/tour";
 import Fact from "../content/FunFact";
 import Feedback from "../content/Feedback";
 import Quote from "../content/Quotes";
+import CreditView from "../content/Credit";
 
 interface AnalyzerData {
   analyzer: AnalyserNode;
@@ -31,10 +32,10 @@ interface VisualizerProps {
 const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [analyzerData, setAnalyzerData] = useState<AnalyzerData | null>(null);
-  const [language, setLanguage] = useState<LanguageOption>("romaji");
+  const [language, setLanguage] = useState<LanguageOption>("indonesia");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeContent, setActiveContent] = useState<
-    "lagu" | "anime" | "caracter" | "gallery" | "fact" | "feedback" | "quotes" | null
+    "lagu" | "anime" | "caracter" | "gallery" | "fact" | "feedback" | "quotes" | "credit" | null
   >(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -99,7 +100,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
     setActiveContent(null);
   };
   const handleContentToggle = (
-    content: "lagu" | "anime" | "caracter" | "gallery" | "fact" | "feedback" | "quotes"
+    content: "lagu" | "anime" | "caracter" | "gallery" | "fact" | "feedback" | "quotes" | "credit"
   ) => {
     if (activeContent === content) {
       setActiveContent(null);
@@ -188,6 +189,11 @@ const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
           <Quote language={language} onClose={handleClose} />
         </div>
       )}
+      {activeContent === "credit" && (
+        <div className="z-20">
+          <CreditView onClose={handleClose} />
+        </div>
+      )}
 
       <button
         onClick={toggleSidebar}
@@ -247,6 +253,11 @@ const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
             label="Quotes"
           />
           <SidebarButton
+            onClick={() => handleContentToggle("credit")}
+            isActive={activeContent === "credit"}
+            label="Credit"
+          />
+          <SidebarButton
             onClick={() => handleContentToggle("feedback")}
             isActive={activeContent === "feedback"}
             label="Feedback"
@@ -286,6 +297,11 @@ const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
             onClick={() => handleContentToggle("quotes")}
             isActive={activeContent === "quotes"}
             label="Quotes"
+          />
+          <SidebarButton
+            onClick={() => handleContentToggle("credit")}
+            isActive={activeContent === "credit"}
+            label="Credit"
           />
           <div className="step-5">
           <SidebarButton
