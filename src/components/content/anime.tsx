@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { TentangAnime } from "@/utils/anime";
 import { motion } from "framer-motion";
 import { LanguageOption } from "@/utils/type";
 import { Card } from "@/components/Reusable/card";
 import { TypedText } from "@/components/Reusable/typedtext";
+import { LoadingSpinner } from "@/components/Reusable/LoadingSpinner";
 
 interface AnimeProps {
   language: LanguageOption;
@@ -12,6 +13,14 @@ interface AnimeProps {
 }
 
 export default function Anime({ language, onClose }: AnimeProps) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  const handleImageLoad = () => {
+    setTimeout(() => {
+      setImageLoaded(true);
+    }, 1000);
+  };
+
   return (
     <div className="flex justify-center items-center min-h-screen p-4">
       <Card onClose={onClose}>
@@ -26,12 +35,16 @@ export default function Anime({ language, onClose }: AnimeProps) {
               }}
             className="relative w-full max-w-[300px] h-[200px] mb-4"
           >
+            {!imageLoaded && <LoadingSpinner />}
           <Image
             src="/anime.jpg"
             alt="Anime"
             layout="fill"
             objectFit="cover"
-            className="rounded-xl shadow-2xl shadow-pink-500"
+            className={`rounded-xl shadow-2xl shadow-pink-500 transition-opacity duration-300 ${
+              imageLoaded ? "opacity-100" : "opacity-0"
+            }`}
+            onLoadingComplete={handleImageLoad}
           />
           </motion.div>
         <TypedText strings={TentangAnime[language]} />

@@ -5,6 +5,7 @@ import { Card } from "@/components/Reusable/card";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import { Gallery } from "@/utils/gallery";
 import { CgSpinner } from "react-icons/cg";
+import { LoadingSpinner } from "../Reusable/LoadingSpinner";
 
 interface GalleryViewProps {
   onClose: () => void;
@@ -62,6 +63,7 @@ export default function GalleryView({ onClose }: GalleryViewProps) {
   return (
     <div className="flex justify-center items-center min-h-screen p-4">
       <Card onClose={onClose}>
+        <h2 className="font-baloo m-3 text-2xl text-pink-500">Gallery Shigatsu Wa Kimi No Uso</h2>
         <div
           className={`grid ${
             isMobile ? "grid-cols-1" : "md:grid-cols-2"
@@ -75,11 +77,9 @@ export default function GalleryView({ onClose }: GalleryViewProps) {
               transition={{ duration: 0.1, delay: index * 0.1 }}
               className="relative w-[15rem] h-[15rem]"
             >
-              {!imagesLoaded[currentGalleryIndex + index] && (
-                <div className="absolute inset-0 flex items-center justify-center bg-grey-200 rounded-xl">
-                  <CgSpinner className="animate-spin text-4xl text-pink-500" />
-                </div>
-              )}
+              {!imagesLoaded[currentGalleryIndex + index] && 
+                <LoadingSpinner/>
+              }
               <Image
                 src={gallery.photo}
                 alt={gallery.id}

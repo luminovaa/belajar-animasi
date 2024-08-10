@@ -5,7 +5,8 @@ import { LanguageOption } from "@/utils/type";
 import { Card } from "@/components/Reusable/card";
 import { TentangCharacters, CharacterNames, CharacterDescriptions } from "@/utils/character";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
-import { TypedText } from "../Reusable/typedtext";
+import { TypedText } from "@/components/Reusable/typedtext";
+import { LoadingSpinner } from "@/components/Reusable/LoadingSpinner";
 
 interface CharacterProps {
   language: LanguageOption;
@@ -14,17 +15,25 @@ interface CharacterProps {
 
 export default function Character({ language, onClose }: CharacterProps) {
   const [currentCharacterIndex, setCurrentCharacterIndex] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(false)
 
   const handleNext = () => {
+    setImagesLoaded(false);
     setCurrentCharacterIndex(
       (prevIndex) => (prevIndex + 1) % TentangCharacters.length
     );
   };
 
   const handlePrevious = () => {
+    setImagesLoaded(false);
     setCurrentCharacterIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   };
 
+  const handleImageLoad = () => {
+    setTimeout(() => {
+      setImagesLoaded(true);
+    }, 1000);
+  }
   const currentCharacter = TentangCharacters[currentCharacterIndex];
   const isFirstCharacter = currentCharacterIndex === 0;
   const isLastCharacter =
@@ -49,12 +58,16 @@ export default function Character({ language, onClose }: CharacterProps) {
               }}
             className="relative w-48 h-48 mb-4"
           >
+            {!imagesLoaded && <LoadingSpinner />}
             <Image
               src={currentCharacter.photo}
               alt={CharacterNames[currentCharacter.id][language]}
               layout="fill"
               objectFit="cover"
-              className="rounded-full shadow-2xl shadow-pink-500"
+              className={`rounded-full shadow-2xl shadow-pink-500 transition-opacity duration-300 ${
+                imagesLoaded ? 'opacity-100' : 'opacity-0'
+              }`}
+              onLoadingComplete={handleImageLoad}
             />
           </motion.div>
           <TypedText strings={[deskripsi]} />
