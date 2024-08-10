@@ -242,6 +242,11 @@ const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
             label="Gallery"
           />
           <SidebarButton
+            onClick={() => handleContentToggle("quotes")}
+            isActive={activeContent === "quotes"}
+            label="Quotes"
+          />
+          <SidebarButton
             onClick={() => handleContentToggle("feedback")}
             isActive={activeContent === "feedback"}
             label="Feedback"

@@ -32,7 +32,7 @@ export default function Quote({ language, onClose }: QuoteProps) {
   return (
     <div className="flex justify-center items-center min-h-screen p-4">
       <Card onClose={onClose}>
-        <p className="text-pink-400 font-baloo text-2xl mb-4">
+        <p className="text-pink-400 font-baloo  text-center text-2xl mb-4">
           {QuoteNames[currentQuote.id][language]}
         </p>
         <div className="flex flex-col items-center">
