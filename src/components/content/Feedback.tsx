@@ -61,7 +61,7 @@ export default function Feedback({ onClose }: FeedbackProps) {
           />
           {submit ? (
             <label className="m-4 font-baloo text-pink-600 font-semibold">
-              Thank You For Your Feedback
+              Thank's For Your Feedback
             </label>
           ) : (
             <div className="flex space-x-4">
