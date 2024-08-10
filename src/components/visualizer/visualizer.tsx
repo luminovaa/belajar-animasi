@@ -15,6 +15,7 @@ import GalleryView from "../content/gallery";
 import { useTour } from "@reactour/tour";
 import Fact from "../content/FunFact";
 import Feedback from "../content/Feedback";
+import Quote from "../content/Quotes";
 
 interface AnalyzerData {
   analyzer: AnalyserNode;
@@ -33,7 +34,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
   const [language, setLanguage] = useState<LanguageOption>("romaji");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeContent, setActiveContent] = useState<
-    "lagu" | "anime" | "caracter" | "gallery" | "fact" | "feedback" | null
+    "lagu" | "anime" | "caracter" | "gallery" | "fact" | "feedback" | "quotes" | null
   >(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -98,7 +99,7 @@ const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
     setActiveContent(null);
   };
   const handleContentToggle = (
-    content: "lagu" | "anime" | "caracter" | "gallery" | "fact" | "feedback"
+    content: "lagu" | "anime" | "caracter" | "gallery" | "fact" | "feedback" | "quotes"
   ) => {
     if (activeContent === content) {
       setActiveContent(null);
@@ -180,6 +181,11 @@ const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
       {activeContent === "feedback" && (
         <div className="z-20">
           <Feedback onClose={handleClose} />
+        </div>
+      )}
+      {activeContent === "quotes" && (
+        <div className="z-20">
+          <Quote language={language} onClose={handleClose} />
         </div>
       )}
 
@@ -270,6 +276,11 @@ const Visualizer: React.FC<VisualizerProps> = ({ isMobile, startTour }) => {
             onClick={() => handleContentToggle("gallery")}
             isActive={activeContent === "gallery"}
             label="Gallery"
+          />
+          <SidebarButton
+            onClick={() => handleContentToggle("quotes")}
+            isActive={activeContent === "quotes"}
+            label="Quotes"
           />
           <SidebarButton
             onClick={() => handleContentToggle("feedback")}

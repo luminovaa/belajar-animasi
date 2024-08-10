@@ -18,6 +18,9 @@ export const TentangCharacters: Character[] = [
     { id: "miyazono_kaori", photo: "/kaori.jpg" },
     { id: "ryouta_watari", photo: "/watari.jpg" },
     { id: "tsubaki_sawabe", photo: "/sawabe.jpg" },
+    { id: "emi_igawa", photo: "/igawa_emi.jpg" },
+    { id: "arima_saki", photo: "/arima_saki.jpg" },
+    { id: "nagi_aiza", photo: "/nagi_aiza.jpg" },
 ];
 
 export const CharacterNames: CharacterTranslations = {
@@ -48,6 +51,27 @@ export const CharacterNames: CharacterTranslations = {
         romaji: "Sawabe Tsubaki",
         kanji: "澤部椿",
         jawa: "Tsubaki Sawabe"
+    },
+    emi_igawa: {
+        indonesia: "Igawa imi",
+        inggris: "Emi Igawa",
+        romaji: "Igama Emi",
+        kanji: "井川 絵見",
+        jawa: "Emi Igawa"
+    },
+   arima_saki: {
+        indonesia: "Arima Saki",
+        inggris: "Saki Arima",
+        romaji: "Arima Saki",
+        kanji: "有馬 早希",
+        jawa: "Saki Arima"
+    },
+   nagi_aiza: {
+        indonesia: "Aiza Nagi",
+        inggris: "Nagi Aiza",
+        romaji: "Aiza Nagi",
+        kanji: "相座 凪 / 藍里 凪",
+        jawa: "Nagi Aiza"
     }
 };
 
@@ -79,5 +103,26 @@ export const CharacterDescriptions: CharacterDescription = {
         romaji: "Tsubaki wa Kousei no osananajimi desu. Kanojo wa itsumo kare no ensō ni itte, ōen shite kimashita. Nagai aida Kousei to issho ni ite, Tsubaki wa jojo ni ane no yō na yakuwari o motsu yō ni narimashita. Kousei wa kanojo ga sewa o shinakerebanaranu yakunitatanai otōto deshita. Ongaku-kei to iu yori, Tsubaki wa undō-kei deshita. Kanojo wa chūgakkō to kōkō no ryōhō de sofutobōru-bu ni haitte ite, chūgakkō kara no senpai to issho ni, sono supōtsu o ōini tanoshinde imashita.",
         kanji: "椿は公生の幼なじみです。彼女はいつも彼の演奏に行って、応援してきました。長い間公生と一緒にいて、椿は徐々に姉のような役割を持つようになりました。公生は彼女が世話をしなければならぬ役に立たない弟でした。音楽系というより、椿は運動系でした。彼女は中学校と高校の両方でソフトボール部に入っていて、中学校からの先輩と一緒に、そのスポーツを大いに楽しんでいました。",
         jawa: "Tsubaki kuwi kancane Kousei nalika isih cilik. Dheweke tansah teka menyang pertunjukane Kousei lan nyengkuyung dheweke. Bareng karo Kousei ing wektu sing suwe, Tsubaki kanthi alon-alon njupuk peran minangka mbak. Kousei kuwi adhi sing ora migunani, sing kudu dirawat. Nanging, tinimbang wong sing seneng musik, Tsubaki kuwi wong sing atletis. Dheweke mlebu tim softball ing SMP lan SMA bareng karo senpai-ne saka SMP, ing ngendi dheweke seneng banget karo olahraga iki."
+    },
+    emi_igawa: {
+        indonesia: `Emi adalah seorang pianis berbakat yang juga merupakan salah satu pesaing dalam kompetisi piano. Ia dikenal karena keterampilannya yang luar biasa dalam bermain piano dan memiliki kepribadian yang ceria serta penuh semangat. Emi menjadi teman Kousei dan juga memberikan dorongan serta dukungan dalam perjuangannya untuk kembali ke dunia musik setelah kehilangan kemampuannya untuk mendengar suara pianonya sendiri.`,
+        inggris: `Emi is a talented pianist who is also one of the competitors in the piano competition. She is known for her exceptional skill in playing the piano and has a bubbly and energetic personality. Emi became Kousei's friend and also provided encouragement and support in his struggle to return to music after losing the ability to hear the sound of his own piano.`,
+        romaji: `Emi wa takumi na pianis de, piano shinsa no shijiin no hitotsu desu. Kanojo wa piano wo hiku tokushū na sukil ni yotte shirareteimasu, soshite kyarakutā wa tanoshikute enerugī ga afureteimasu. Emi wa Kousei no yūjin to natte, sono piano no oto ga kikanai you ni natte kara no ongaku no sekai ni modoru tame no tatakai ni dōryoku suru Kousei wo shien shiteimasu.`,
+        kanji: `エミは卓越したピアニストで、ピアノ競技の一人です。彼女はピアノを弾く特秀なスキルによって知られています、そしてキャラクターは楽しくてエネルギーが溢れています。エミはこうせいの友人となり、そのピアノの音が聞こえないようになってからの音楽の世界に戻るための戦いに努力するこうせいを支援しています。`,
+        jawa: `Emi yaiku pianis berbakat sing uga dadi salah siji pesaing ing kompetisi piano. Dheweke dikenal amarga keterampilane sing luar biasa ing main piano lan duwe kepribadian sing ceria lan energik. Emi dadi kanca Kousei lan uga menehi dorongan lan dukungan ing perjuangane kanggo bali menyang donya musik sawisé kelangan kemampuane kanggo ngrungokake swara pianone dhewe.`    
+    },
+   arima_saki: {
+        indonesia: `Saki adalah ibu Kousei yang sangat ketat dalam melatihnya bermain piano. Dia meninggal dunia beberapa waktu sebelum cerita dimulai, dan kepergiannya meninggalkan dampak besar dalam kehidupan Kousei.`,
+        inggris: `Saki was Kousei's mother who was very strict in training him to play the piano. She passed away some time before the story begins, and her passing left a huge impact on Kousei's life.`,
+        romaji: `Saki wa Kousei no okaasan de, totemo kibishii piano no kunren wo shiteimasu. Kanojo wa monogatari ga hajimeru sukoshi mae ni shinda, soshite sono shibou wa Kousei no jinsei ni dai-tekina eikyō wo nokoshimashita.`,
+        kanji: `咲はこうせいの母で、とても厳しくピアノの訓練をしていました。彼女は物語が始まる少し前に亡くなり、その死はこうせいの人生に大きな影響を残しました。`,
+        jawa: `Saki yaiku ibu Kousei sing sangat ketat ing nglatih dheweke main piano. Dheweke wis mati sawetara wektu sadurunge cerita dimulai, lan pati kasebut ninggalake dampak gedhe ing urip Kousei.`    
+    },
+   nagi_aiza: {
+        indonesia: `Nagi adalah adik Kaori dan juga seorang pianis berbakat. Dia memiliki hubungan yang kompleks dengan Kousei dan sering berusaha keras untuk mengikuti jejak kakaknya.`,
+        inggris: `Nagi is Kaori's younger sister and also a talented pianist. She has a complex relationship with Kousei and often strives to follow in her brother's footsteps.`,
+        romaji: `Nagi wa Kaori no imōto de, mada takumi na pianis desu. Kanojo wa Kousei to no fukuzatsu na kankei wo motteimasu, soshite yoku ani no ashi o oikakemasu.`,
+        kanji: `凪は香織の妹で、まだ優れたピアニストです。彼女はこうせいとの複雑な関係を持っており、よく兄の足を追いかけます。`,
+        jawa: `Nagi yaiku adik Kaori lan uga pianis berbakat. Dheweke nduweni hubungan kompleks karo Kousei lan asring nyoba keras kanggo ngetutake jejak kakake.`    
     }
 };

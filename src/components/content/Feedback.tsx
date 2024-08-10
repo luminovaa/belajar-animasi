@@ -86,6 +86,7 @@ export default function Feedback({ onClose }: FeedbackProps) {
           name="hidden_iframe"
           id="hidden_iframe"
         ></iframe>
+        <p className="text-sm md:text-xl font-baloo text-white pt-4">Share To:</p>
         <div className="flex justify-between space-x-4 pt-4">
           <WhatsappShareButton url={shareUrl}>
             <WhatsappIcon size={40} round={true} />
