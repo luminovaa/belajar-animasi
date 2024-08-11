@@ -17,9 +17,7 @@ export default function Anime({ language, onClose }: AnimeProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleImageLoad = () => {
-    setTimeout(() => {
       setImageLoaded(true);
-    }, 1000);
   };
 
   return (

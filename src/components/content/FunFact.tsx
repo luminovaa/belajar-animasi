@@ -29,9 +29,7 @@ export default function Fact({ language, onClose }: FactProps) {
   };
 
   const handleImageLoad = () => {
-    setTimeout(() => {
       setImagesLoaded(true);
-    }, 1000);
   };
   const currentFact = TentangFact[currentFactIndex];
   const isFirstFact = currentFactIndex === 0;

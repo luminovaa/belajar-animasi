@@ -17,9 +17,7 @@ export default function Lagu({ language, onClose }: LaguProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const handleImageLoad = () => {
-    setTimeout(() => {
       setImageLoaded(true);
-    }, 1000);
   };
   return (
     <div className="flex justify-center items-center min-h-screen p-4">

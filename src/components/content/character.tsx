@@ -31,9 +31,7 @@ export default function Character({ language, onClose }: CharacterProps) {
   };
 
   const handleImageLoad = () => {
-    setTimeout(() => {
       setImagesLoaded(true);
-    }, 1000);
   }
   const currentCharacter = TentangCharacters[currentCharacterIndex];
   const isFirstCharacter = currentCharacterIndex === 0;

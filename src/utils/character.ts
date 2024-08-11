@@ -53,7 +53,7 @@ export const CharacterNames: CharacterTranslations = {
         jawa: "Tsubaki Sawabe"
     },
     emi_igawa: {
-        indonesia: "Igawa imi",
+        indonesia: "Igawa Emi",
         inggris: "Emi Igawa",
         romaji: "Igama Emi",
         kanji: "井川 絵見",
