@@ -17,7 +17,7 @@ interface FeedbackProps {
 
 export default function Feedback({ onClose }: FeedbackProps) {
   const [submit, setSubmit] = useState(false);
-  const shareUrl = "https://hikalunara.vercel.app";
+  const shareUrl = "https://hikaluna.vercel.app";
 
   return (
     <div className="flex justify-center items-center min-h-screen p-4">

@@ -57,6 +57,7 @@ export const creditData: CreditSection[] = [
             { label: "MyAnimeList.com" },
             { label: "Fandom Shigatsu Wa Kimi No Uso" },
             { label: "WaifuWallpaper.com" },
+            { label: "Pinterest.com" },
         ],
     },
 ];
