@@ -6,6 +6,7 @@ import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import { Gallery } from "@/utils/gallery";
 import { LoadingSpinner } from "../Reusable/LoadingSpinner";
 import { FaDownload } from "react-icons/fa";
+import LazyLoad from "react-lazy-load";
 
 interface GalleryViewProps {
   onClose: () => void;
@@ -96,19 +97,21 @@ export default function GalleryView({ onClose }: GalleryViewProps) {
               className="relative sm:w-[15rem] sm:h-[15rem] w-[14rem] h-[14rem] group overflow-hidden"
             >
               {!imagesLoaded[currentGalleryIndex + index] && <LoadingSpinner />}
-              <Image
-                src={gallery.photo}
-                alt={gallery.id}
-                layout="fill"
-                quality={50}
-                objectFit="cover"
-                className={`rounded-xl shadow-2xl shadow-pink-500 transition-all duration-300 group-hover:scale-110 ${
-                  imagesLoaded[currentGalleryIndex + index]
-                    ? "opacity-100"
-                    : "opacity-0"
-                }`}
-                onLoadingComplete={() => handleImageLoad(index)}
-              />
+              <LazyLoad height={200} offset={70}>
+                <Image
+                  src={gallery.photo}
+                  alt={gallery.id}
+                  layout="fill"
+                  quality={50}
+                  objectFit="cover"
+                  className={`rounded-xl shadow-2xl shadow-pink-500 transition-all duration-300 group-hover:scale-110 ${
+                    imagesLoaded[currentGalleryIndex + index]
+                      ? "opacity-100"
+                      : "opacity-0"
+                  }`}
+                  onLoadingComplete={() => handleImageLoad(index)}
+                />
+              </LazyLoad>
               <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex justify-between items-center">
                 <p className="text-sm">{gallery.description}</p>
                 <button

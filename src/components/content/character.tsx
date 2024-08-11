@@ -7,6 +7,7 @@ import { TentangCharacters, CharacterNames, CharacterDescriptions } from "@/util
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import { TypedText } from "@/components/Reusable/typedtext";
 import { LoadingSpinner } from "@/components/Reusable/LoadingSpinner";
+import LazyLoad from "react-lazy-load";
 
 interface CharacterProps {
   language: LanguageOption;
@@ -59,9 +60,11 @@ export default function Character({ language, onClose }: CharacterProps) {
             className="relative w-48 h-48 mb-4"
           >
             {!imagesLoaded && <LoadingSpinner />}
+            <LazyLoad height={200} offset={70}>
             <Image
               src={currentCharacter.photo}
               alt={CharacterNames[currentCharacter.id][language]}
+              quality={50}
               layout="fill"
               objectFit="cover"
               className={`rounded-full shadow-2xl shadow-pink-500 transition-opacity duration-300 ${
@@ -69,6 +72,7 @@ export default function Character({ language, onClose }: CharacterProps) {
               }`}
               onLoadingComplete={handleImageLoad}
             />
+            </LazyLoad>
           </motion.div>
           <TypedText strings={[deskripsi]} />
           <div className="absolute bottom-4 right-4 px-4 py-2 space-x-7">

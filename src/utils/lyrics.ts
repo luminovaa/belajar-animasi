@@ -335,7 +335,7 @@ const jawa: string[] = [
   "Apa jawaban tansah kebeneran? Kebutuhan?",
   "Jalan sing kapan wae kowe pilih bakal dadi takdir",
   "Pangarep-arep lan kuatir sing kowe gegem erat",
-  "Bakal dadi cahya sing nggerakke kita loro",
+  "Bakal dadi cahya sing nggerakke awadewe",
 ];
 
 

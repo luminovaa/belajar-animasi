@@ -7,6 +7,7 @@ import { TentangFact, FactName, FactDescriptions } from "@/utils/Fact";
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 import { TypedText } from "@/components/Reusable/typedtext";
 import { LoadingSpinner } from "@/components/Reusable/LoadingSpinner";
+import LazyLoad from "react-lazy-load";
 
 interface FactProps {
   language: LanguageOption;
@@ -15,13 +16,11 @@ interface FactProps {
 
 export default function Fact({ language, onClose }: FactProps) {
   const [currentFactIndex, setCurrentFactIndex] = useState(0);
-  const [imagesLoaded, setImagesLoaded] = useState(false)
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   const handleNext = () => {
     setImagesLoaded(false);
-    setCurrentFactIndex(
-      (prevIndex) => (prevIndex + 1) % TentangFact.length
-    );
+    setCurrentFactIndex((prevIndex) => (prevIndex + 1) % TentangFact.length);
   };
 
   const handlePrevious = () => {
@@ -33,11 +32,10 @@ export default function Fact({ language, onClose }: FactProps) {
     setTimeout(() => {
       setImagesLoaded(true);
     }, 1000);
-  }
+  };
   const currentFact = TentangFact[currentFactIndex];
   const isFirstFact = currentFactIndex === 0;
-  const isLastFact =
-    currentFactIndex === TentangFact.length - 1;
+  const isLastFact = currentFactIndex === TentangFact.length - 1;
   const deskripsi = FactDescriptions[currentFact.id]?.[language];
 
   return (
@@ -53,22 +51,24 @@ export default function Fact({ language, onClose }: FactProps) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{
-              ease: 'linear',
-               duration: 0.5 
-              }}
+              ease: "linear",
+              duration: 0.5,
+            }}
             className="relative w-48 h-48 mb-4"
           >
             {!imagesLoaded && <LoadingSpinner />}
-            <Image
-              src={currentFact.photo}
-              alt={FactName[currentFact.id][language]}
-              layout="fill"
-              objectFit="cover"
-              className={`rounded-xl shadow-2xl shadow-pink-500 transition-opacity duration-300 ${
-                imagesLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
-              onLoadingComplete={handleImageLoad}
-            />
+            <LazyLoad height={200} offset={70}>
+              <Image
+                src={currentFact.photo}
+                alt={FactName[currentFact.id][language]}
+                layout="fill"
+                objectFit="cover"
+                className={`rounded-xl shadow-2xl shadow-pink-500 transition-opacity duration-300 ${
+                  imagesLoaded ? "opacity-100" : "opacity-0"
+                }`}
+                onLoadingComplete={handleImageLoad}
+              />
+            </LazyLoad>
           </motion.div>
           <TypedText strings={[deskripsi]} />
           <div className="absolute bottom-4 right-4 px-4 py-2 space-x-7">
