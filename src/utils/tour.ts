@@ -25,7 +25,7 @@ export const MobileSteps = [
     
     {
         selector: '.mobilestep-3',
-        content: 'Open on Desktop Website For More Experience'
+        content: 'Desktop Recomended. Open on Desktop Website For More Experience'
     },
     { 
         selector: '.mobilestep-1',
