@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
+import React, { useState, useEffect, useRef } from "react";
+import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from "react-icons/fa";
 
 interface CustomAudioPlayerProps {
   audioRef: React.RefObject<HTMLAudioElement>;
@@ -16,11 +16,11 @@ const CustomAudioPlayer: React.FC<CustomAudioPlayerProps> = ({ audioRef }) => {
   useEffect(() => {
     const audio = audioRef.current;
     if (audio) {
-      audio.addEventListener('timeupdate', handleTimeUpdate);
-      audio.addEventListener('loadedmetadata', handleLoadedMetadata);
+      audio.addEventListener("timeupdate", handleTimeUpdate);
+      audio.addEventListener("loadedmetadata", handleLoadedMetadata);
       return () => {
-        audio.removeEventListener('timeupdate', handleTimeUpdate);
-        audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
+        audio.removeEventListener("timeupdate", handleTimeUpdate);
+        audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
       };
     }
   }, [audioRef]);
@@ -52,7 +52,7 @@ const CustomAudioPlayer: React.FC<CustomAudioPlayerProps> = ({ audioRef }) => {
     if (progressRef.current && audioRef.current) {
       const rect = progressRef.current.getBoundingClientRect();
       const x = e.clientX - rect.left;
-      const clickedValue = (x / rect.width) * duration ;
+      const clickedValue = (x / rect.width) * duration;
       audioRef.current.currentTime = clickedValue;
     }
   };
@@ -81,54 +81,51 @@ const CustomAudioPlayer: React.FC<CustomAudioPlayerProps> = ({ audioRef }) => {
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
   return (
     <div className="flex items-center w-full opacity-60 text-white  space-x-4">
-    <button 
-      onClick={togglePlayPause} 
-      className="text-white font-bold p-2 rounded-full"
-    >
-      {isPlaying ? <FaPause /> : <FaPlay />}
-    </button>
-    
-    <div className="flex-grow relative">
-      <div 
-        ref={progressRef}
-        className="w-full h-2 bg-gray-300 rounded-full cursor-pointer"
-        onClick={handleProgressClick}
+      <button
+        onClick={togglePlayPause}
+        className="text-white font-bold p-2 rounded-full"
       >
-        <div 
-          className="h-full bg-pink-500 rounded-full"
-          style={{ width: `${(currentTime / duration) * 100}%` }}
-        ></div>
+        {isPlaying ? <FaPause /> : <FaPlay />}
+      </button>
+
+      <div className="flex-grow relative">
+        <div
+          ref={progressRef}
+          className="w-full h-2 bg-gray-300 rounded-full cursor-pointer"
+          onClick={handleProgressClick}
+        >
+          <div
+            className="h-full bg-pink-500 rounded-full"
+            style={{ width: `${(currentTime / duration) * 100}%` }}
+          ></div>
+        </div>
+      </div>
+
+      <div className="text-sm whitespace-nowrap max-sm:hidden">
+        {formatTime(currentTime)} / {formatTime(duration)}
+      </div>
+
+      <div className="flex items-center">
+        <button onClick={toggleMute} className="">
+          {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
+        </button>
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value={isMuted ? 0 : volume}
+          onChange={handleVolumeChange}
+          className="ml-2 w-14 md:w-20"
+        />
       </div>
     </div>
-    
-    <div className="text-sm whitespace-nowrap max-sm:hidden">
-      {formatTime(currentTime)} / {formatTime(duration)}
-    </div>
-    
-    <div className="flex items-center">
-      <button 
-        onClick={toggleMute}
-        className=""
-      >
-        {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
-      </button>
-      <input 
-        type="range" 
-        min="0" 
-        max="1" 
-        step="0.01" 
-        value={isMuted ? 0 : volume}
-        onChange={handleVolumeChange}
-        className="ml-2 w-20"
-      />
-    </div>
-  </div>
-);
+  );
 };
 
 export default CustomAudioPlayer;
